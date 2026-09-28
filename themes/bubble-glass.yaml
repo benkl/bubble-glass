@@ -1,5 +1,5 @@
 ---
-# Bubble Glass
+# Bubble Glass v1.1.0
 # Derived from the MIT-licensed Bubble theme by Clooos.
 # https://github.com/Clooos/Bubble
 Bubble Glass:
@@ -17,36 +17,21 @@ Bubble Glass:
   paper-font-caption_-_font-family: "var(--primary-font-family)"
   paper-font-title_-_font-family: "var(--primary-font-family)"
   ha-card-header-font-family: "var(--primary-font-family)"
-  ha-card-border-radius: "24px"
+  ha-card-border-radius: "28px"
   ha-dialog-border-radius: "28px"
-  control-button-border-radius: "18px"
+  control-button-border-radius: "50px"
   grid-card-gap: "16px"
   horizontal-stack-card-gap: "16px"
   vertical-stack-card-gap: "16px"
   masonry-view-card-margin: "8px 8px 16px"
 
-  # Bubble Card geometry. Bubble Card theme keys omit the CSS -- prefix.
-  bubble-border-radius: "22px"
-  bubble-icon-border-radius: "16px"
-  bubble-sub-button-border-radius: "14px"
-  bubble-sub-slider-border-radius: "14px"
+  # Bubble Card geometry, matching the original Bubble theme's roundness.
+  # Cards are pills (half the row height), icons are circles, the pop-up
+  # keeps its 42px default. Theme keys omit the CSS -- prefix.
+  bubble-border-radius: "calc(var(--row-height, 56px) / 2)"
+  bubble-icon-border-radius: "50%"
+  bubble-pop-up-border-radius: "42px"
   bubble-sub-slider-height: "40px"
-  bubble-button-border-radius: "22px"
-  bubble-button-icon-border-radius: "16px"
-  bubble-media-player-border-radius: "22px"
-  bubble-media-player-buttons-border-radius: "14px"
-  bubble-media-player-icon-border-radius: "16px"
-  bubble-cover-border-radius: "22px"
-  bubble-cover-icon-border-radius: "16px"
-  bubble-select-border-radius: "22px"
-  bubble-select-list-border-radius: "18px"
-  bubble-select-button-border-radius: "14px"
-  bubble-select-icon-border-radius: "16px"
-  bubble-climate-border-radius: "22px"
-  bubble-climate-icon-border-radius: "16px"
-  bubble-calendar-border-radius: "22px"
-  bubble-pop-up-border-radius: "32px"
-  bubble-horizontal-buttons-stack-border-radius: "18px"
   bubble-footer-width: "calc(100% - 32px)"
   bubble-footer-bottom: "16px"
 
