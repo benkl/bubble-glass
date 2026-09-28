@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.4.1 - 2026-09-28
+
+### Changed
+
+- Example dashboard now includes inline `styles:` on the horizontal-buttons-stack
+  card, so the glass footer works without the module system. This is the
+  recommended approach since the module file is not discovered by all Bubble
+  Card installations.
+
 ## v1.4.0 - 2026-09-28
 
 ### Changed
