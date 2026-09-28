@@ -4,6 +4,21 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.6.0 - 2026-09-28
+
+### Fixed
+
+- **Resolved Double-Border and Corner Radius Artifacts on Bubble Cards**:
+  `card-mod-card` was applying rectangular `ha-card` borders and backdrop filters
+  to the outer wrapper of all custom cards, causing rectangular 28px corners
+  to render directly behind Bubble Card's own pill-shaped elements.
+- Standard cards now render their glass layer via `ha-card::before` with `border-radius: inherit`,
+  guaranteeing clean corner rounding without clipping or double borders.
+- Explicitly excluded `:host(bubble-card) ha-card`, `:host(.type-custom-bubble-card) ha-card`,
+  and `ha-card.type-custom-bubble-card` from card-mod so Bubble Card's native pill geometry
+  and sub-buttons render cleanly without any foreign outer container.
+
+
 ## v1.5.0 - 2026-09-28
 
 ### Changed

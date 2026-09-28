@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.5.0
+# Bubble Glass v1.6.0
 # Derived from the MIT-licensed Bubble theme by Clooos.
 # https://github.com/Clooos/Bubble
 Bubble Glass:
@@ -349,30 +349,52 @@ Bubble Glass:
   # card-mod adds real blur to standard Home Assistant cards. Bubble Card uses
   # its public theme variables above and does not depend on private selectors.
   card-mod-card: |
+    /* Standard Home Assistant cards receive the glass treatment via a pseudo-element layer.
+       This guarantees that ha-card's rounded corners and border-radius are perfectly respected
+       without clipping, bleeding, or double-border artifacts. */
     ha-card {
       position: relative;
-      overflow: hidden;
+      background: transparent !important;
+      border: 1px solid var(--glass-border-color, var(--ha-card-border-color));
+      box-shadow: var(--glass-shadow, var(--ha-card-box-shadow));
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+    ha-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
       background:
         linear-gradient(150deg, var(--glass-highlight-color, transparent) 0%, transparent 42%),
         var(--glass-background, var(--ha-card-background));
-      border: 1px solid var(--glass-border-color, var(--ha-card-border-color));
       box-shadow:
-        var(--glass-shadow, var(--ha-card-box-shadow)),
         inset 0 1px 0 var(--glass-highlight-color, transparent),
         inset 0 -1px 0 var(--glass-rim-color, transparent);
       backdrop-filter: var(--glass-backdrop-filter, none);
       -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
-      transition: transform 180ms ease, border-color 180ms ease,
-        box-shadow 180ms ease;
     }
+
+    /* Exclude Bubble Cards, Heading cards, Glance cards, and Text-only cards so they manage
+       their own pill/separator styling without a conflicting rectangular 28px card-mod frame. */
+    :host(bubble-card) ha-card,
+    :host(.type-custom-bubble-card) ha-card,
     :host(hui-heading-card) ha-card,
     :host(hui-glance-card) ha-card,
-    :host(.type-custom-bubble-card) ha-card {
+    ha-card.type-custom-bubble-card {
       background: none !important;
       border: none !important;
       box-shadow: none !important;
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
+    }
+    :host(bubble-card) ha-card::before,
+    :host(.type-custom-bubble-card) ha-card::before,
+    :host(hui-heading-card) ha-card::before,
+    :host(hui-glance-card) ha-card::before,
+    ha-card.type-custom-bubble-card::before {
+      content: none !important;
     }
     @media (prefers-reduced-motion: reduce) {
       ha-card {
