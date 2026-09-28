@@ -1,38 +1,24 @@
 ---
 # Bubble Glass global module.
 #
-# Install: copy this file to <config>/bubble-modules.yaml (merge if the file
-# already exists), restart Home Assistant (or reload the browser), then open
-# any Bubble Card, Modules, and make sure "Bubble Glass" is listed and applied
-# to all cards. If the module is loaded, the footer card's shadow DOM shows a
-# second <style> tag with the rules below; if that tag is empty, the module
-# is not loading and the footer stays flat.
-#
-# The module reads the Bubble Glass theme tokens (--glass-*), so it follows
-# light and dark mode automatically:
-# - real backdrop blur on every Bubble Card row
-# - the fixed footer bar itself becomes the pinned glass slab, so dashboard
-#   content scrolling underneath smears through it
-# - glass chips for the footer buttons
+# Install: copy this file to <config>/bubble-modules.yaml (merge if already present)
+# and restart Home Assistant, or create it in any Bubble Card under
+# Modules > Create new module with "All cards" enabled.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.1"
+  version: "1.2"
   creator: "benkl"
   description: >-
-    Backdrop blur for Bubble Card rows, a pinned glass slab for the footer
-    bar, and glass chips for the footer buttons. Follows the Bubble Glass
-    theme tokens for light and dark mode.
+    Backdrop blur for Bubble Card rows and floating glass pills for the footer bar.
   is_global: true
   code: |
-    /* Every Bubble Card row: real backdrop blur */
+    /* Bubble Card rows: backdrop blur */
     .bubble-container {
-      backdrop-filter: var(--glass-backdrop-filter, none) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
+      backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
     }
 
-    /* Bottom menu buttons: floating glass pills with their own blur and shadow.
-       We override the stock opacity: 0.8 to 1 so the blur and translucent glass
-       shine through cleanly without a muddy box. */
+    /* Footer menu: floating glass pills with blur and shadow */
     .horizontal-buttons-stack-card .bubble-button .bubble-background {
       background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
       backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
@@ -42,8 +28,7 @@ bubble_glass:
       opacity: 1 !important;
     }
 
-    /* Active highlight keeps its JS-driven accent fill; hide its stock dark
-       border so exactly one edge renders per button. */
+    /* Active highlight: keep accent fill, hide dark stock border */
     .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
       border-color: transparent !important;
     }

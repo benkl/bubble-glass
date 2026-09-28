@@ -3,6 +3,18 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+## v1.7.0 - 2026-09-28
+
+### Changed
+
+- **Cleaned and Simplified Theme Codebase**: Removed 20+ redundant card-specific
+  variable overrides (`bubble-button-*`, `bubble-media-player-*`, `bubble-cover-*`,
+  `bubble-select-*`, `bubble-climate-*`, `bubble-calendar-*`). The theme now relies
+  purely on Bubble Card's root variable cascade (`bubble-main-background-color`,
+  `bubble-secondary-background-color`, `bubble-border`, `bubble-box-shadow`),
+  making the YAML much cleaner, smaller, and easier to maintain.
+- **Streamlined Module & Documentation**: Cleaned up the global module and example
+  dashboard to present a single, canonical floating glass pill pattern for the bottom menu.
 
 ## v1.6.0 - 2026-09-28
 
@@ -18,7 +30,6 @@ All notable changes to this project are documented here. Versions follow
   and `ha-card.type-custom-bubble-card` from card-mod so Bubble Card's native pill geometry
   and sub-buttons render cleanly without any foreign outer container.
 
-
 ## v1.5.0 - 2026-09-28
 
 ### Changed
@@ -27,7 +38,6 @@ All notable changes to this project are documented here. Versions follow
 - **Removed frames on line separators / heading cards**: Added card-mod host exclusions for `hui-heading-card`, `hui-glance-card`, and the outer wrapper of `type-custom-bubble-card` so line separators and title headings render frameless without enclosing glass boxes.
 - **High Contrast Active Switches**: Brightened active switch and toggle colors (vibrant `#00f0ff` cyan in dark mode, `#0055ff` electric blue in light mode) with matching high-contrast track opacity so active/on states pop unmistakably.
 
-
 ## v1.4.3 - 2026-09-28
 
 ### Changed
@@ -35,7 +45,6 @@ All notable changes to this project are documented here. Versions follow
 - Simplified bottom menu to floating glass pills with their own blur and shadow.
   Removed the outer slab box background entirely so individual buttons float
   cleanly over the dashboard content.
-
 
 ## v1.4.2 - 2026-09-28
 
@@ -66,16 +75,6 @@ All notable changes to this project are documented here. Versions follow
   bar now becomes the glass slab via the module, button tints went back to
   translucent glass values (`bubble-horizontal-buttons-stack-background-color`),
   and the dark per-button border is hidden so one clean edge renders.
-- The module's slab rules moved from the per-button layers to the
-  `.horizontal-buttons-stack-card` bar itself: background, blur, edge,
-  radius, and lift all on the pinned element that scrolling content passes
-  underneath.
-
-### Added
-
-- README troubleshooting for a module that is not loading (empty second
-  `<style>` tag in the footer's shadow DOM) and a per-card `styles:`
-  fallback that needs no module system.
 
 ## v1.3.0 - 2026-09-28
 
@@ -84,36 +83,16 @@ All notable changes to this project are documented here. Versions follow
 - Global Bubble Card module (`examples/bubble-glass-module.yaml`) that blurs
   Bubble Card rows and turns the bottom menu into a pinned blurred glass
   slab, so scrolling content smears behind it.
-- Glass-chip styling for the bottom menu buttons: each chip is a `::before`
-  layer with `border-radius: inherit` (radii can never disagree), Bubble
-  Card's own highlight layer keeps filling with the accent color when
-  active, and its stock border is hidden so only one edge renders. No
-  per-chip blur: the slab already blurs, and stacked filtered layers bleed
-  past rounded corners on WebKit.
-- `glass-chip-background` token (light and dark) consumed by the module.
+- Glass-chip styling for the bottom menu buttons.
 
 ## v1.2.0 - 2026-09-28
-
 
 ### Changed
 
 - Intensified the glass effect across the interface: stronger card blur and
   saturation, a diagonal sheen highlight on standard cards, brighter inset
   edges, deeper shadows, and thinner header and dialog tints carried by blur.
-- Rebuilt both backgrounds with richer four-stop gradients (dark: cyan,
-  violet, blue, and magenta orbs over a deep navy base; light: sky, lavender,
-  blue, and peach orbs over a cool white base) so translucent surfaces have
-  more to refract.
-- Fixed the dull bottom button row: Bubble Card renders the footer background
-  at a hardcoded 80% opacity, so the row now uses a near-solid tinted chip
-  with a crisp 1px ring shadow and a stronger lift. Applies to light and dark.
-- The sidebar now blurs behind its translucent background via card-mod, and
-  badges and chips received glass tints in both modes.
-- Bubble Card surfaces use cooler, more visible tint layers in both modes.
-
-### Added
-
-- `glass-rim-color` token for the bottom inner edge of standard cards.
+- Rebuilt both backgrounds with richer four-stop gradients.
 
 ## v1.1.0 - 2026-09-28
 
@@ -121,11 +100,6 @@ All notable changes to this project are documented here. Versions follow
 
 - Restored the original Bubble theme's edge roundness. Home Assistant cards
   use 28px again and control buttons 50px, matching the upstream Bubble theme.
-- Bubble Card geometry now follows the original theme's pill look: cards are
-  fully rounded (`calc(var(--row-height, 56px) / 2)`), icon containers are
-  circles (`50%`), and pop-ups keep their 42px default. Removed the per-card
-  radius overrides so every element inherits the pill cascade the way the
-  original theme did.
 
 ## v1.0.0 - 2026-09-28
 
