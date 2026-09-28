@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.4.3 - 2026-09-28
+
+### Changed
+
+- Simplified bottom menu to floating glass pills with their own blur and shadow.
+  Removed the outer slab box background entirely so individual buttons float
+  cleanly over the dashboard content.
+
+
 ## v1.4.2 - 2026-09-28
 
 ### Changed

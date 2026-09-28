@@ -89,21 +89,13 @@ views:
             2_icon: mdi:silverware-fork-knife
             2_link: "#kitchen"
             styles: |
-              .horizontal-buttons-stack-card {
-                background: var(--glass-background, transparent) !important;
-                backdrop-filter: var(--glass-backdrop-filter, none) !important;
-                -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
-                border-radius: var(--bubble-border-radius, 32px) !important;
-                border: 1px solid var(--glass-border-color, transparent) !important;
-                box-shadow: var(--bubble-footer-box-shadow, none) !important;
-              }
               .bubble-button .bubble-background {
+                background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
+                backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
+                -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
+                border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
+                box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
                 opacity: 1 !important;
-                background-color: var(--glass-chip-background, rgba(255, 255, 255, 0.18)) !important;
-                border: 1px solid var(--glass-border-color, transparent) !important;
-                box-shadow: inset 0 1px 0 var(--glass-highlight-color, transparent) !important;
-                backdrop-filter: blur(14px) saturate(160%) !important;
-                -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
               }
               .bubble-button .bubble-background-color {
                 border-color: transparent !important;
