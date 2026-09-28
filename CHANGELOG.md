@@ -4,6 +4,16 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.4.2 - 2026-09-28
+
+### Changed
+
+- Footer buttons now show visible backdrop blur. Stock Bubble Card puts a
+  hardcoded 80% opacity on `.bubble-background`, which was hiding the blur
+  behind it; the `styles:` block now forces `opacity: 1` and uses the
+  `glass-chip-background` token (thin translucent tint) so the 14px blur
+  dominates instead of a flat color.
+
 ## v1.4.1 - 2026-09-28
 
 ### Changed

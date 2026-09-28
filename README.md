@@ -121,10 +121,12 @@ styles: |
     box-shadow: var(--bubble-footer-box-shadow, none);
   }
   .bubble-button .bubble-background {
-    border: 1px solid var(--glass-border-color, transparent);
-    box-shadow: inset 0 1px 0 var(--glass-highlight-color, transparent);
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    opacity: 1 !important;
+    background-color: var(--glass-chip-background, rgba(255, 255, 255, 0.18)) !important;
+    border: 1px solid var(--glass-border-color, transparent) !important;
+    box-shadow: inset 0 1px 0 var(--glass-highlight-color, transparent) !important;
+    backdrop-filter: blur(14px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
   }
   .bubble-button .bubble-background-color {
     border-color: transparent !important;
