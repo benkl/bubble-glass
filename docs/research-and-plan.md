@@ -167,4 +167,11 @@ The theme uses one cyan-to-violet accent family in both modes. This avoids a das
 - Bubble Card variables were checked against the 3.4.1 documentation tables and base-card cascade.
 - A post-implementation review removed a card-mod more-info block that targeted Material Web Components dialog internals no longer rendered by current Home Assistant dialogs; dialog tinting now relies on Home Assistant's own dialog theme variables.
 
-Remaining external steps, not verifiable from this repository: publish to GitHub, set description, topics, and Issues, add real screenshots, run the HACS action, publish a release, and submit to HACS defaults.
+Publication record (2026-09-28):
+
+- Published at <https://github.com/benkl/bubble-glass>, public, default branch `main`.
+- Repository description, six topics, and Issues are set.
+- The Validate workflow passed on the initial push: HACS validation and yamllint both green.
+- Release `v1.0.0` published; HACS reports it as the installed version for custom-repository users.
+
+Not planned for now: submission to the HACS default catalog (`hacs/default`). The theme installs as a custom repository, which is the documented path for repositories not in the catalog. Real dashboard screenshots are still outstanding; `docs/preview.svg` is the placeholder.
