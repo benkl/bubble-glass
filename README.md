@@ -13,6 +13,7 @@ A clean, modern glassmorphism theme for Home Assistant with first-class [Bubble 
 - **Bubble Card Native**: Full compatibility with Bubble Card v3.4+ using its built-in CSS variable cascade.
 - **Frameless Separators**: Line separators render strictly as typography and accent lines on the background without enclosing containers or box borders.
 - **Floating Glass Bottom Menu**: Navigation and drawer trigger buttons render uniformly as floating glass pills.
+- **Glass Pop-up Close Buttons**: Drawer/pop-up close and back action buttons receive matching glass styling and backdrop blur.
 - **Zero External Dependencies**: Pure CSS gradients that look great offline.
 
 ## Requirements

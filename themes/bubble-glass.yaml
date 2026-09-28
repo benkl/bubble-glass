@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.10.0
+# Bubble Glass v1.11.0
 # Clean, cohesive glassmorphism theme for Home Assistant & Bubble Card
 Bubble Glass:
   card-mod-theme: "Bubble Glass"
@@ -175,6 +175,7 @@ Bubble Glass:
       bubble-line-background-color: "rgba(200, 230, 255, 0.24)"
       bubble-pop-up-main-background-color: "var(--glass-chip-background)"
       bubble-pop-up-background-color: "rgba(13, 18, 38, 0.82)"
+      bubble-pop-up-close-button-border: "1px solid var(--glass-border-color)"
       bubble-backdrop-background-color: "rgba(2, 4, 12, 0.72)"
       bubble-footer-box-shadow: >-
         0 0 0 1px rgba(200, 230, 255, 0.14),
@@ -308,6 +309,7 @@ Bubble Glass:
       bubble-line-background-color: "rgba(45, 72, 112, 0.20)"
       bubble-pop-up-main-background-color: "rgba(214, 234, 255, 0.60)"
       bubble-pop-up-background-color: "rgba(246, 250, 255, 0.84)"
+      bubble-pop-up-close-button-border: "1px solid var(--glass-border-color)"
       bubble-backdrop-background-color: "rgba(32, 46, 74, 0.38)"
       bubble-footer-box-shadow: >-
         0 0 0 1px rgba(45, 72, 112, 0.10),
