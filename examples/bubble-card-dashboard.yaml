@@ -88,22 +88,21 @@ views:
             auto_order: false
             1_name: Home
             1_icon: mdi:home-variant
-            1_link: /lovelace/home
-            2_name: Kitchen
-            2_icon: mdi:silverware-fork-knife
-            2_link: "#kitchen"
             styles: |
-              .bubble-background-color {
-                border-color: transparent !important;
-                border-width: 0px !important;
+              .horizontal-buttons-stack-card .bubble-button {
+                border-radius: var(--bubble-border-radius, 32px) !important;
+                overflow: hidden !important;
+              }
+              .horizontal-buttons-stack-card .bubble-button .bubble-background {
+                background-color: var(--bubble-main-background-color, var(--glass-background)) !important;
+                border: none !important;
+                box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
+                opacity: 1 !important;
+                backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
+                -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
+              }
+              .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
+                background-color: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
-              }
-              .bubble-button .bubble-background {
-                background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
-                backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-                -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-                border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
-                box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
-                opacity: 1 !important;
               }

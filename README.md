@@ -8,63 +8,64 @@ A clean, modern glassmorphism theme for Home Assistant with first-class [Bubble 
 
 ## Features
 
-- **Liquid Glass Aesthetics**: Deep backdrop blur, subtle reflection sheens, top specular highlight edges, and ambient drop shadows for realistic tactile volume.
-- **Unified Light & Dark Modes**: Seamless automatic switching following device preference with high-contrast electric accents (Cyan in Dark, Royal Blue in Light).
-- **Bubble Card Native**: Full compatibility with Bubble Card v3.4+ using its built-in CSS variable cascade.
-- **Frameless Separators**: Line separators render strictly as typography and accent lines on the background without enclosing containers or box borders.
-- **Floating Glass Bottom Menu**: Navigation and drawer trigger buttons render uniformly as floating glass pills.
-- **Glass Pop-up Close Buttons**: Drawer/pop-up close and back action buttons receive matching glass styling and backdrop blur.
-- **Zero External Dependencies**: Pure CSS gradients that look great offline.
+- Liquid glass surfaces with blur, highlights, and restrained shadows.
+- Unified light and dark modes with high-contrast accents.
+- Bubble Card v3.4+ styling through its public CSS variables.
+- Frameless separators.
+- Matching glass footer navigation, drawer triggers, and pop-up close buttons.
+- Offline-safe CSS gradient backgrounds.
 
 ## Requirements
 
-- Home Assistant with YAML themes enabled (`frontend: themes: !include_dir_merge_named themes`)
-- [Bubble Card](https://github.com/Clooos/Bubble-Card) (v3.2+)
-- [card-mod](https://github.com/thomasloven/lovelace-card-mod) (recommended for backdrop blur on standard cards and header)
+- Home Assistant with YAML themes enabled:
+  ```yaml
+  frontend:
+    themes: !include_dir_merge_named themes
+  ```
+- [Bubble Card](https://github.com/Clooos/Bubble-Card) v3.2+
+- [card-mod](https://github.com/thomasloven/lovelace-card-mod), recommended for standard-card and header blur
 
-## Installation (HACS)
+## Installation
 
 1. Open **HACS → Three-dot menu → Custom repositories**.
 2. Add `https://github.com/benkl/bubble-glass` with category **Theme**.
 3. Download **Bubble Glass**.
-4. In `configuration.yaml`, ensure you have:
-   ```yaml
-   frontend:
-     themes: !include_dir_merge_named themes
-   ```
-5. Reload themes via **Developer Tools → Actions → `frontend.reload_themes`**.
-6. Select **Bubble Glass** in your User Profile.
+4. Run `frontend.reload_themes` from **Developer Tools → Actions**.
+5. Select **Bubble Glass** in your user profile.
 
-## Bottom Menu Styling
+## Bottom menu styling
 
-For the bottom `horizontal-buttons-stack` to render as floating glass pills with blur (and override Bubble Card's JS inline border attributes), add this `styles:` block to your card:
+Bubble Card writes an inline `border-color: var(--primary-text-color)` to `.bubble-background-color` for inactive footer buttons. The `!important` reset below is intentional. It makes footer navigation buttons and `#hash` drawer triggers use the same single glass surface as standard Bubble Card buttons.
 
 ```yaml
 type: custom:bubble-card
 card_type: horizontal-buttons-stack
-# ... your buttons (both views and #hash pop-up triggers) ...
+# ... your buttons ...
 styles: |
-  .bubble-background-color {
-    border-color: transparent !important;
-    border-width: 0px !important;
+  .horizontal-buttons-stack-card .bubble-button {
+    border-radius: var(--bubble-border-radius, 32px) !important;
+    overflow: hidden !important;
+  }
+  .horizontal-buttons-stack-card .bubble-button .bubble-background {
+    background-color: var(--bubble-main-background-color, var(--glass-background)) !important;
+    border: none !important;
+    box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
+    opacity: 1 !important;
+    backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
+    -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
+  }
+  .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
+    background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
-  .bubble-button .bubble-background {
-    background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
-    backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-    -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-    border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
-    box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
-    opacity: 1 !important;
-  }
 ```
 
-Or install the global module from [`examples/bubble-glass-module.yaml`](examples/bubble-glass-module.yaml).
+The global module is available at [`examples/bubble-glass-module.yaml`](examples/bubble-glass-module.yaml).
 
-## Example Dashboard
+## Example dashboard
 
-See [`examples/bubble-card-dashboard.yaml`](examples/bubble-card-dashboard.yaml) for a complete reference dashboard configuration.
+See [`examples/bubble-card-dashboard.yaml`](examples/bubble-card-dashboard.yaml).
 
 ## License
 
