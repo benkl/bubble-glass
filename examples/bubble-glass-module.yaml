@@ -6,20 +6,19 @@
 # Modules > Create new module with "All cards" enabled.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.5"
+  version: "1.6"
   creator: "benkl"
   description: >-
-    Backdrop blur for Bubble Card rows, frameless separators, pop-up close button glass,
-    and floating glass pills for all footer buttons (overriding JS inline borders).
+    Glass blur, highlights, and shadows for Bubble Card rows, pop-up actions, and footer buttons.
   is_global: true
   code: |
-    /* Bubble Card standard cards: backdrop blur */
+    /* Standard Bubble Card rows */
     .bubble-container:not(.bubble-separator) {
-      backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
+      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
     }
 
-    /* Separators: strictly frameless typography & line only */
+    /* Separators stay frameless */
     .bubble-separator.separator-container,
     .bubble-container.bubble-separator {
       background: none !important;
@@ -29,18 +28,17 @@ bubble_glass:
       -webkit-backdrop-filter: none !important;
     }
 
-    /* Pop-up header action & close buttons: full glass styling */
+    /* Pop-up close / back action buttons */
     .bubble-header-action-button,
     .bubble-close-button {
-      background: var(--glass-chip-background, rgba(255, 255, 255, 0.45)) !important;
-      backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
-      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
-      box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
+      background: var(--glass-chip-background, rgba(255, 255, 255, 0.14)) !important;
+      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
+      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.30)) !important;
+      box-shadow: var(--ha-card-box-shadow, 0 8px 32px rgba(0, 0, 0, 0.10)) !important;
     }
 
-    /* Footer buttons match standard Bubble Card buttons: one native Bubble
-       surface, one radius, one shadow. Do not add a second chip border. */
+    /* Footer buttons match the native Bubble Card surface. */
     .horizontal-buttons-stack-card .bubble-button {
       border-radius: var(--bubble-border-radius, 32px) !important;
       overflow: hidden !important;
@@ -50,11 +48,12 @@ bubble_glass:
       border: none !important;
       box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
       opacity: 1 !important;
-      backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
+      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
     }
+    /* Bubble Card sets an inactive inline border here. Keep the layer only
+       for state color, never for a second border or shadow. */
     .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
-      background-color: transparent !important;
       border: none !important;
       box-shadow: none !important;
     }
