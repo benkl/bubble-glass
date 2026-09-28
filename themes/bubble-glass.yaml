@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.14.0
+# Bubble Glass v1.15.0
 # Clean, cohesive glassmorphism theme for Home Assistant & Bubble Card
 Bubble Glass:
   card-mod-theme: "Bubble Glass"
@@ -75,25 +75,25 @@ Bubble Glass:
       background-image: "var(--lovelace-background)"
 
       # Unified Glass Tokens
-      ha-card-background: "rgba(255, 255, 255, 0.14)"
+      ha-card-background: "rgba(10, 15, 32, 0.72)"
       card-background-color: "var(--ha-card-background)"
-      ha-card-border-color: "rgba(255, 255, 255, 0.30)"
+      ha-card-border-color: "rgba(210, 232, 255, 0.22)"
       ha-card-border-width: "1px"
       ha-card-border-style: "solid"
-      ha-card-border: "1px solid rgba(255, 255, 255, 0.30)"
+      ha-card-border: "1px solid rgba(210, 232, 255, 0.22)"
       ha-card-box-shadow: >-
-        0 8px 32px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.50),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.10),
-        inset 0 0 60px 30px rgba(255, 255, 255, 0.03)
-      glass-background: "rgba(255, 255, 255, 0.14)"
-      glass-background-strong: "rgba(255, 255, 255, 0.24)"
-      glass-background-soft: "rgba(255, 255, 255, 0.08)"
-      glass-border-color: "rgba(255, 255, 255, 0.30)"
-      glass-rim-color: "rgba(255, 255, 255, 0.10)"
-      glass-chip-background: "rgba(255, 255, 255, 0.14)"
-      glass-highlight-color: "rgba(255, 255, 255, 0.50)"
-      glass-shadow: "0 8px 32px rgba(0, 0, 0, 0.28)"
+        0 8px 32px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 0 60px 30px rgba(100, 160, 255, 0.025)
+      glass-background: "rgba(13, 19, 40, 0.45)"
+      glass-background-strong: "rgba(17, 24, 50, 0.55)"
+      glass-background-soft: "rgba(10, 15, 32, 0.30)"
+      glass-border-color: "rgba(210, 232, 255, 0.22)"
+      glass-rim-color: "rgba(255, 255, 255, 0.06)"
+      glass-chip-background: "rgba(13, 19, 40, 0.45)"
+      glass-highlight-color: "rgba(255, 255, 255, 0.32)"
+      glass-shadow: "0 8px 32px rgba(0, 0, 0, 0.42)"
       glass-backdrop-filter: "blur(12px) saturate(145%)"
 
       # Header, Sidebar, Dialogs
@@ -170,8 +170,7 @@ Bubble Glass:
       bubble-separator-border: "none"
       bubble-separator-box-shadow: "none"
       bubble-line-background-color: "rgba(200, 230, 255, 0.24)"
-      bubble-pop-up-main-background-color: "var(--glass-chip-background)"
-      bubble-pop-up-background-color: "rgba(13, 18, 38, 0.82)"
+      bubble-pop-up-background-color: "rgba(8, 11, 24, 0.88)"
       bubble-pop-up-close-button-border: "1px solid var(--glass-border-color)"
       bubble-backdrop-background-color: "rgba(2, 4, 12, 0.72)"
       bubble-footer-box-shadow: "var(--ha-card-box-shadow)"
@@ -309,6 +308,7 @@ Bubble Glass:
     ha-card {
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
     ha-card::before,
     ha-card::after {
@@ -340,12 +340,30 @@ Bubble Glass:
     :host(hui-glance-card) ha-card::after {
       content: none;
     }
+    :host(bubble-card) ha-card {
+      overflow: visible;
+    }
+    @media (max-width: 768px) {
+      ha-card::before,
+      ha-card::after {
+        content: none;
+      }
+    }
 
   card-mod-sidebar: |
     :host {
       backdrop-filter: var(--glass-backdrop-filter, none);
       -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
     }
+
+  card-mod-root-yaml: |
+    .: |
+      @media (max-width: 768px) {
+        :host {
+          --glass-backdrop-filter: blur(8px) saturate(130%);
+          --app-header-backdrop-filter: blur(12px) saturate(130%);
+        }
+      }
 
   card-mod-root: |
     app-header,

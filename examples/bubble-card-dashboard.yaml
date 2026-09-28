@@ -98,11 +98,8 @@ views:
                 border: none !important;
                 box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
                 opacity: 1 !important;
-                backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
-                -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(26px)) !important;
               }
               .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
-                background-color: transparent !important;
                 border: none !important;
                 box-shadow: none !important;
               }

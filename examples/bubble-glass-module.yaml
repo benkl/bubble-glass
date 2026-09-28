@@ -6,14 +6,15 @@
 # Modules > Create new module with "All cards" enabled.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.6"
+  version: "1.7"
   creator: "benkl"
   description: >-
-    Glass blur, highlights, and shadows for Bubble Card rows, pop-up actions, and footer buttons.
+    Glass styling for Bubble Card rows, pop-up actions, and footer buttons without breaking dropdown placement.
   is_global: true
   code: |
-    /* Standard Bubble Card rows */
-    .bubble-container:not(.bubble-separator) {
+    /* Bubble Card rows use the background leaf, never .bubble-container.
+       A filtered container becomes a containing block and breaks fixed menus. */
+    .bubble-container:not(.bubble-separator) > .bubble-wrapper > .bubble-background {
       backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
       -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
     }
@@ -28,12 +29,11 @@ bubble_glass:
       -webkit-backdrop-filter: none !important;
     }
 
-    /* Pop-up close / back action buttons */
+    /* Pop-up close / back action buttons. The pop-up shell already owns the
+       backdrop blur, so these use the same tint, edge, and shadow only. */
     .bubble-header-action-button,
     .bubble-close-button {
       background: var(--glass-chip-background, rgba(255, 255, 255, 0.14)) !important;
-      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
       border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.30)) !important;
       box-shadow: var(--ha-card-box-shadow, 0 8px 32px rgba(0, 0, 0, 0.10)) !important;
     }
@@ -48,8 +48,6 @@ bubble_glass:
       border: none !important;
       box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
       opacity: 1 !important;
-      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
     }
     /* Bubble Card sets an inactive inline border here. Keep the layer only
        for state color, never for a second border or shadow. */
