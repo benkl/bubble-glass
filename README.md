@@ -93,17 +93,45 @@ cards:
 
 See [`examples/bubble-card-dashboard.yaml`](examples/bubble-card-dashboard.yaml) for buttons, climate, media player, select, pop-up, sub-buttons, and the horizontal footer.
 
-## Glass module (recommended)
+## Glass module (required for the footer)
 
-Bubble Card exposes color, border, radius, and shadow variables, but no backdrop-filter variable, and the bottom menu buttons have no background of their own. The global module in [`examples/bubble-glass-module.yaml`](examples/bubble-glass-module.yaml) closes the gap:
+Theme variables cannot add backdrop blur, and stock Bubble Card leaves the footer bar itself without any background: each button carries its own tint layers. The global module in [`examples/bubble-glass-module.yaml`](examples/bubble-glass-module.yaml) does what variables cannot:
 
 - Real backdrop blur on every Bubble Card row
-- A pinned, blurred glass slab behind the bottom menu. The bar is fixed, so dashboard content scrolling underneath smears through it, which is what sells the glass
-- Glass-chip buttons in the bottom menu: translucent tint, one clean edge, inset highlight. The chip uses `border-radius: inherit`, so it can never fight the button's radius, and Bubble Card's active highlight still fills on top
+- The fixed footer bar becomes the pinned glass slab (background, edge, radius, lift), so dashboard content scrolling underneath smears through it. Without this, the footer is just flat translucent pills
+- Glass chips for the footer buttons: the edge is drawn on the button's own tint layer, which already carries the pill radius, so edge and radius cannot disagree. The active accent fill keeps working, and its stock dark border is hidden
 
-Install: copy the file to `<config>/bubble-modules.yaml` (merge it if that file already exists), or recreate it in any card under **Modules > Create new module** and toggle **All cards**. It reads the theme's `--glass-*` tokens, so it follows light and dark mode on its own.
+Install: copy the file to `<config>/bubble-modules.yaml` (merge it if that file already exists) and restart Home Assistant. Then open any Bubble Card, go to **Modules**, and confirm **Bubble Glass** is listed; if you create it by hand in the editor, toggle **All cards**.
 
-The module targets Bubble Card CSS classes, so recheck it after major Bubble Card updates. Skip it on low-power wall panels; the base theme works without it.
+Verify it is loading: inspect the footer card, and check the second `<style>` tag inside its shadow DOM contains the module rules. An empty second `<style>` tag means the module is not applied and the footer will stay flat.
+
+No module system? Paste the same CSS into the footer card directly:
+
+```yaml
+type: custom:bubble-card
+card_type: horizontal-buttons-stack
+# ... your buttons ...
+styles: |
+  .horizontal-buttons-stack-card {
+    background: var(--glass-background, transparent);
+    backdrop-filter: var(--glass-backdrop-filter, none);
+    -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
+    border-radius: var(--bubble-border-radius, 32px);
+    border: 1px solid var(--glass-border-color, transparent);
+    box-shadow: var(--bubble-footer-box-shadow, none);
+  }
+  .bubble-button .bubble-background {
+    border: 1px solid var(--glass-border-color, transparent);
+    box-shadow: inset 0 1px 0 var(--glass-highlight-color, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+  }
+  .bubble-button .bubble-background-color {
+    border-color: transparent !important;
+  }
+```
+
+The module targets Bubble Card CSS classes, so recheck it after major Bubble Card updates. Skip the blur parts on low-power wall panels; the base theme works without it.
 
 ## Customization
 

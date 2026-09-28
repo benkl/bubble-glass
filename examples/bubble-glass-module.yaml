@@ -2,59 +2,62 @@
 # Bubble Glass global module.
 #
 # Install: copy this file to <config>/bubble-modules.yaml (merge if the file
-# already exists), or recreate it in any Bubble Card under
-# Modules > Create new module. `is_global: true` applies it to all cards.
+# already exists), restart Home Assistant (or reload the browser), then open
+# any Bubble Card, Modules, and make sure "Bubble Glass" is listed and applied
+# to all cards. If the module is loaded, the footer card's shadow DOM shows a
+# second <style> tag with the rules below; if that tag is empty, the module
+# is not loading and the footer stays flat.
 #
 # The module reads the Bubble Glass theme tokens (--glass-*), so it follows
-# light and dark mode automatically. It adds:
-# - real backdrop blur to Bubble Card rows
-# - a pinned blurred glass slab to the bottom horizontal buttons stack, so
-#   scrolling dashboard content smears behind it
-# - glass-chip styling for the buttons in the bottom menu
+# light and dark mode automatically:
+# - real backdrop blur on every Bubble Card row
+# - the fixed footer bar itself becomes the pinned glass slab, so dashboard
+#   content scrolling underneath smears through it
+# - glass chips for the footer buttons
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.0"
+  version: "1.1"
   creator: "benkl"
   description: >-
-    Backdrop blur for Bubble Card rows and the bottom menu, plus glass-chip
-    buttons for the horizontal buttons stack. Follows the Bubble Glass theme
-    tokens for light and dark mode.
+    Backdrop blur for Bubble Card rows, a pinned glass slab for the footer
+    bar, and glass chips for the footer buttons. Follows the Bubble Glass
+    theme tokens for light and dark mode.
   is_global: true
   code: |
-    /* Bubble Card rows: real backdrop blur */
+    /* Every Bubble Card row: real backdrop blur */
     .bubble-container {
       backdrop-filter: var(--glass-backdrop-filter, none) !important;
       -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
     }
 
-    /* Bottom menu: pinned glass slab. The bar is position:fixed, so dashboard
-       content scrolling underneath is blurred through it. */
-    .horizontal-buttons-stack-card .bubble-background {
-      backdrop-filter: var(--glass-backdrop-filter, none) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
+    /* The fixed footer bar becomes the pinned glass slab. Stock Bubble Card
+       leaves the bar itself without a background (each button carries its
+       own tint layers), so background, edge, radius and lift all live here.
+       The bar is position:fixed, so dashboard content scrolling underneath
+       is blurred through it. */
+    .horizontal-buttons-stack-card {
+      background: var(--glass-background, transparent);
+      backdrop-filter: var(--glass-backdrop-filter, none);
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
+      border-radius: var(--bubble-border-radius, 32px);
+      border: 1px solid var(--glass-border-color, transparent);
+      box-shadow: var(--bubble-footer-box-shadow, none);
     }
 
-    /* Bottom menu buttons: glass chips floating on the slab. A ::before
-       layer with border-radius: inherit can never disagree with the
-       button's own radius, and Bubble Card's per-button highlight layer
-       (.bubble-background-color) keeps filling with the accent color when
-       active. Its stock 1px border is made transparent so only one edge
-       renders; two stacked borders with their own radii is what produced
-       ragged corners on mobile. No per-chip backdrop blur: the slab behind
-       already blurs, and stacked filtered layers bleed past rounded
-       corners on WebKit. */
-    .horizontal-buttons-stack-card .bubble-button::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: var(--glass-chip-background, rgba(255, 255, 255, 0.4));
-      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.5));
-      box-shadow:
-        inset 0 1px 0 var(--glass-highlight-color, rgba(255, 255, 255, 0.6)),
-        0 6px 16px rgba(0, 0, 0, 0.16);
-      pointer-events: none;
+    /* Footer button chips. The inactive layer (.bubble-background) takes its
+       tint from --bubble-horizontal-buttons-stack-background-color and
+       renders at a hardcoded 0.8 opacity. The edge goes on that same
+       element, which already carries the pill radius, so the chip edge and
+       radius can never disagree. */
+    .bubble-button .bubble-background {
+      border: 1px solid var(--glass-border-color, transparent);
+      box-shadow: inset 0 1px 0 var(--glass-highlight-color, transparent);
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
     }
-    .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
+
+    /* Active highlight keeps its JS-driven accent fill; hide its stock dark
+       border so exactly one edge renders per button. */
+    .bubble-button .bubble-background-color {
       border-color: transparent !important;
     }

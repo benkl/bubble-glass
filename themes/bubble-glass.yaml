@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.3.0
+# Bubble Glass v1.4.0
 # Derived from the MIT-licensed Bubble theme by Clooos.
 # https://github.com/Clooos/Bubble
 Bubble Glass:
@@ -188,7 +188,7 @@ Bubble Glass:
       bubble-climate-accent-color: "#68d8ff"
       bubble-climate-box-shadow: "var(--bubble-box-shadow)"
       bubble-calendar-main-background-color: "rgba(22, 30, 58, 0.62)"
-      bubble-horizontal-buttons-stack-background-color: "rgba(24, 32, 62, 1)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(22, 30, 58, 0.55)"
       bubble-line-background-color: "rgba(200, 230, 255, 0.24)"
       bubble-pop-up-main-background-color: "rgba(160, 200, 255, 0.12)"
       bubble-pop-up-background-color: "rgba(13, 18, 38, 0.82)"
@@ -334,7 +334,7 @@ Bubble Glass:
       bubble-climate-accent-color: "#1368e8"
       bubble-climate-box-shadow: "var(--bubble-box-shadow)"
       bubble-calendar-main-background-color: "rgba(255, 255, 255, 0.58)"
-      bubble-horizontal-buttons-stack-background-color: "rgba(232, 240, 255, 1)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(255, 255, 255, 0.45)"
       bubble-line-background-color: "rgba(45, 72, 112, 0.20)"
       bubble-pop-up-main-background-color: "rgba(214, 234, 255, 0.60)"
       bubble-pop-up-background-color: "rgba(246, 250, 255, 0.84)"

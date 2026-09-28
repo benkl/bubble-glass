@@ -4,6 +4,27 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.4.0 - 2026-09-28
+
+### Changed
+
+- Corrected the footer model after inspecting the live DOM: stock Bubble Card
+  leaves the fixed bar itself without a background, and each button carries
+  its own tint layer plus an active-fill layer with a dark stock border. The
+  bar now becomes the glass slab via the module, button tints went back to
+  translucent glass values (`bubble-horizontal-buttons-stack-background-color`),
+  and the dark per-button border is hidden so one clean edge renders.
+- The module's slab rules moved from the per-button layers to the
+  `.horizontal-buttons-stack-card` bar itself: background, blur, edge,
+  radius, and lift all on the pinned element that scrolling content passes
+  underneath.
+
+### Added
+
+- README troubleshooting for a module that is not loading (empty second
+  `<style>` tag in the footer's shadow DOM) and a per-card `styles:`
+  fallback that needs no module system.
+
 ## v1.3.0 - 2026-09-28
 
 ### Added
