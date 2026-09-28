@@ -11,7 +11,8 @@ A clean, modern glassmorphism theme for Home Assistant with first-class [Bubble 
 - **Liquid Glass Aesthetics**: Deep backdrop blur, subtle reflection sheens, top specular highlight edges, and ambient drop shadows for realistic tactile volume.
 - **Unified Light & Dark Modes**: Seamless automatic switching following device preference with high-contrast electric accents (Cyan in Dark, Royal Blue in Light).
 - **Bubble Card Native**: Full compatibility with Bubble Card v3.4+ using its built-in CSS variable cascade.
-- **Clean Card-Mod Isolation**: Standard cards receive glass effects via `ha-card::before` without interfering with custom card pill radii or separator headings.
+- **Frameless Separators**: Line separators render strictly as typography and accent lines on the background without enclosing containers or box borders.
+- **Floating Glass Bottom Menu**: Navigation and drawer trigger buttons render uniformly as floating glass pills.
 - **Zero External Dependencies**: Pure CSS gradients that look great offline.
 
 ## Requirements
@@ -40,9 +41,9 @@ For the bottom `horizontal-buttons-stack` to render as floating glass pills with
 ```yaml
 type: custom:bubble-card
 card_type: horizontal-buttons-stack
-# ... your buttons ...
+# ... your buttons (both views and #hash pop-up triggers) ...
 styles: |
-  .bubble-button .bubble-background {
+  .horizontal-buttons-stack-card .bubble-button .bubble-background {
     background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
     backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
     -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
@@ -50,7 +51,7 @@ styles: |
     box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
     opacity: 1 !important;
   }
-  .bubble-button .bubble-background-color {
+  .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
     border-color: transparent !important;
   }
 ```

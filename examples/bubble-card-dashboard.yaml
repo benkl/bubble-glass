@@ -40,6 +40,10 @@ views:
             heading: Rooms
             icon: mdi:floor-plan
           - type: custom:bubble-card
+            card_type: separator
+            name: Controls & Devices
+            icon: mdi:devices
+          - type: custom:bubble-card
             card_type: button
             button_type: name
             name: Kitchen
@@ -89,7 +93,7 @@ views:
             2_icon: mdi:silverware-fork-knife
             2_link: "#kitchen"
             styles: |
-              .bubble-button .bubble-background {
+              .horizontal-buttons-stack-card .bubble-button .bubble-background {
                 background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
                 backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
                 -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
@@ -97,6 +101,6 @@ views:
                 box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
                 opacity: 1 !important;
               }
-              .bubble-button .bubble-background-color {
+              .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
                 border-color: transparent !important;
               }

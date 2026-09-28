@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.9.0
+# Bubble Glass v1.10.0
 # Clean, cohesive glassmorphism theme for Home Assistant & Bubble Card
 Bubble Glass:
   card-mod-theme: "Bubble Glass"
@@ -169,6 +169,9 @@ Bubble Glass:
       bubble-select-list-item-accent-color: "rgba(0, 240, 255, 0.20)"
       bubble-select-list-background-color: "rgba(20, 27, 55, 0.98)"
       bubble-horizontal-buttons-stack-background-color: "var(--glass-background)"
+      bubble-separator-main-background-color: "transparent"
+      bubble-separator-border: "none"
+      bubble-separator-box-shadow: "none"
       bubble-line-background-color: "rgba(200, 230, 255, 0.24)"
       bubble-pop-up-main-background-color: "var(--glass-chip-background)"
       bubble-pop-up-background-color: "rgba(13, 18, 38, 0.82)"
@@ -299,6 +302,9 @@ Bubble Glass:
       bubble-select-list-item-accent-color: "rgba(0, 85, 255, 0.16)"
       bubble-select-list-background-color: "rgba(250, 252, 255, 0.96)"
       bubble-horizontal-buttons-stack-background-color: "var(--glass-background)"
+      bubble-separator-main-background-color: "transparent"
+      bubble-separator-border: "none"
+      bubble-separator-box-shadow: "none"
       bubble-line-background-color: "rgba(45, 72, 112, 0.20)"
       bubble-pop-up-main-background-color: "rgba(214, 234, 255, 0.60)"
       bubble-pop-up-background-color: "rgba(246, 250, 255, 0.84)"
@@ -309,11 +315,6 @@ Bubble Glass:
         inset 0 1px 0 rgba(255, 255, 255, 1)
 
   # card-mod rules
-  # Note: card-mod-card is intentionally omitted so card-mod does NOT inject
-  # duplicate borders, rectangular pseudo-elements, or nested box-shadows
-  # onto ha-card elements. Home Assistant's native CSS variables (ha-card-background,
-  # ha-card-border-color, ha-card-box-shadow, ha-card-border-radius) style all
-  # standard cards cleanly with zero double-border artifacts.
   card-mod-sidebar: |
     :host {
       backdrop-filter: var(--glass-backdrop-filter, none);

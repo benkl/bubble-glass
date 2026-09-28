@@ -6,19 +6,30 @@
 # Modules > Create new module with "All cards" enabled.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.2"
+  version: "1.3"
   creator: "benkl"
   description: >-
-    Backdrop blur for Bubble Card rows and floating glass pills for the footer bar.
+    Backdrop blur for Bubble Card rows, frameless separators, and floating glass pills for all footer buttons.
   is_global: true
   code: |
-    /* Bubble Card rows: backdrop blur */
-    .bubble-container {
+    /* Bubble Card standard cards: backdrop blur */
+    .bubble-container:not(.bubble-separator) {
       backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
       -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
     }
 
-    /* Footer menu: floating glass pills with blur and shadow */
+    /* Separators: strictly frameless typography & line only, zero container box */
+    .bubble-separator.separator-container,
+    .bubble-container.bubble-separator {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* All bottom menu buttons (links, navigation, pop-up/drawer triggers):
+       floating glass pills with blur, highlight, and volumetric shadow */
     .horizontal-buttons-stack-card .bubble-button .bubble-background {
       background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
       backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
