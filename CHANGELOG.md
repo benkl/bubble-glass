@@ -3,6 +3,17 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+## v1.8.0 - 2026-09-28
+
+### Changed
+
+- **Theme Variable Consistency & Token Unification**:
+  - `primary-color` and `accent-color` now match exactly within each mode (`#00f0ff` for Dark, `#0055ff` for Light), eliminating mismatched hover/focus/switch colors.
+  - All input fields, slider knobs, pins, active states, code editors, and toggle buttons consistently use `var(--accent-color)`.
+  - Secondary elements (`bubble-secondary-background-color`, `bubble-icon-background-color`, `bubble-sub-button-background-color`, `bubble-select-background-color`, `bubble-pop-up-main-background-color`) now uniformly reference `var(--glass-chip-background)`.
+  - Badges and assistant chips uniformly reference `var(--glass-background-soft)`.
+  - Sidebar active icon now cleanly references `var(--accent-color)`.
+
 ## v1.7.0 - 2026-09-28
 
 ### Changed

@@ -1,10 +1,10 @@
 ---
-# Bubble Glass v1.7.0
-# Derived from the MIT-licensed Bubble theme by Clooos (https://github.com/Clooos/Bubble).
+# Bubble Glass v1.8.0
+# Clean, cohesive glassmorphism theme for Home Assistant & Bubble Card
 Bubble Glass:
   card-mod-theme: "Bubble Glass"
 
-  # Shared typography and geometry
+  # Typography & Base Geometry
   primary-font-family: >-
     Inter, ui-rounded, "SF Pro Display", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif
@@ -24,7 +24,7 @@ Bubble Glass:
   vertical-stack-card-gap: "16px"
   masonry-view-card-margin: "8px 8px 16px"
 
-  # Bubble Card geometry: cards are pills, icons are circles, pop-up 42px
+  # Bubble Card Geometry
   bubble-border-radius: "calc(var(--row-height, 56px) / 2)"
   bubble-icon-border-radius: "50%"
   bubble-pop-up-border-radius: "42px"
@@ -32,7 +32,7 @@ Bubble Glass:
   bubble-footer-width: "calc(100% - 32px)"
   bubble-footer-bottom: "16px"
 
-  # Semantic state colors
+  # Global State Colors
   state-active-color: "var(--accent-color)"
   state-inactive-color: "var(--disabled-text-color)"
   state-light-active-color: "#ffd166"
@@ -49,8 +49,8 @@ Bubble Glass:
 
   modes:
     dark:
-      # Core palette
-      primary-color: "#68d8ff"
+      # Core Colors & Palette
+      primary-color: "#00f0ff"
       accent-color: "#00f0ff"
       accent-medium-color: "#00f0ff"
       primary-text-color: "#f7f9ff"
@@ -64,9 +64,6 @@ Bubble Glass:
       clear-background-color: "rgba(13, 18, 38, 0.72)"
       divider-color: "rgba(188, 220, 255, 0.14)"
       scrollbar-thumb-color: "rgba(188, 220, 255, 0.28)"
-      label-badge-background-color: "rgba(160, 200, 255, 0.14)"
-      label-badge-text-color: "var(--primary-text-color)"
-      ha-chip-background-color: "rgba(160, 200, 255, 0.12)"
 
       # Background
       lovelace-background: >-
@@ -77,7 +74,7 @@ Bubble Glass:
         linear-gradient(160deg, #05070f 0%, #0c1124 40%, #131843 66%, #070a19 100%)
       background-image: "var(--lovelace-background)"
 
-      # Glass token system
+      # Unified Glass Tokens
       ha-card-background: "rgba(22, 30, 58, 0.55)"
       card-background-color: "var(--ha-card-background)"
       ha-card-border-color: "rgba(200, 230, 255, 0.22)"
@@ -93,12 +90,12 @@ Bubble Glass:
       glass-background-soft: "rgba(160, 200, 255, 0.10)"
       glass-border-color: "rgba(200, 230, 255, 0.22)"
       glass-rim-color: "rgba(120, 170, 255, 0.06)"
-      glass-chip-background: "rgba(150, 190, 255, 0.10)"
+      glass-chip-background: "rgba(160, 200, 255, 0.14)"
       glass-highlight-color: "rgba(255, 255, 255, 0.16)"
       glass-shadow: "0 22px 50px rgba(0, 0, 0, 0.42)"
       glass-backdrop-filter: "blur(26px) saturate(170%)"
 
-      # Header, sidebar, dialogs
+      # Header, Sidebar, Dialogs
       app-header-background-color: "rgba(6, 9, 20, 0.42)"
       app-header-backdrop-filter: "blur(28px) saturate(170%)"
       app-header-text-color: "var(--primary-text-color)"
@@ -107,8 +104,8 @@ Bubble Glass:
       sidebar-text-color: "#dce4f8"
       sidebar-icon-color: "#909bb6"
       sidebar-selected-text-color: "#ffffff"
-      sidebar-selected-icon-color: "#68d8ff"
-      sidebar-selected-background-color: "rgba(104, 216, 255, 0.12)"
+      sidebar-selected-icon-color: "var(--accent-color)"
+      sidebar-selected-background-color: "rgba(0, 240, 255, 0.12)"
       paper-listbox-background-color: "rgba(24, 32, 62, 0.96)"
       mdc-dialog-scrim-color: "rgba(2, 4, 12, 0.72)"
       paper-dialog-background-color: "rgba(18, 24, 46, 0.88)"
@@ -117,7 +114,12 @@ Bubble Glass:
       more-info-header-background: "rgba(255, 255, 255, 0.06)"
       menu-background-color: "rgba(24, 32, 62, 0.96)"
 
-      # Controls & inputs
+      # Badges & Chips
+      label-badge-background-color: "var(--glass-background-soft)"
+      label-badge-text-color: "var(--primary-text-color)"
+      ha-chip-background-color: "var(--glass-background-soft)"
+
+      # Controls & Inputs
       input-fill-color: "rgba(255, 255, 255, 0.07)"
       input-ink-color: "var(--primary-text-color)"
       input-label-ink-color: "var(--secondary-text-color)"
@@ -126,33 +128,33 @@ Bubble Glass:
       input-disabled-label-ink-color: "var(--disabled-text-color)"
       input-idle-line-color: "transparent"
       input-dropdown-icon-color: "var(--secondary-text-color)"
-      input-hover-line-color: "var(--primary-color)"
+      input-hover-line-color: "var(--accent-color)"
       mdc-text-field-fill-color: "rgba(255, 255, 255, 0.07)"
       mdc-text-field-ink-color: "var(--primary-text-color)"
       mdc-text-field-label-ink-color: "var(--secondary-text-color)"
       mdc-select-fill-color: "rgba(255, 255, 255, 0.07)"
       mdc-theme-primary: "var(--accent-color)"
-      paper-input-container-focus-color: "var(--primary-color)"
-      paper-slider-knob-color: "var(--primary-color)"
-      paper-slider-pin-color: "var(--primary-color)"
-      paper-slider-active-color: "var(--primary-color)"
+      paper-input-container-focus-color: "var(--accent-color)"
+      paper-slider-knob-color: "var(--accent-color)"
+      paper-slider-pin-color: "var(--accent-color)"
+      paper-slider-active-color: "var(--accent-color)"
       paper-slider-container-color: "rgba(255, 255, 255, 0.16)"
-      switch-checked-button-color: "#00f0ff"
+      switch-checked-button-color: "var(--accent-color)"
       switch-checked-track-color: "rgba(0, 240, 255, 0.65)"
       switch-unchecked-button-color: "#8a94ac"
       switch-unchecked-track-color: "rgba(138, 148, 172, 0.30)"
-      paper-toggle-button-checked-button-color: "#00f0ff"
+      paper-toggle-button-checked-button-color: "var(--accent-color)"
       paper-toggle-button-checked-bar-color: "rgba(0, 240, 255, 0.65)"
-      paper-radio-button-checked-color: "var(--primary-color)"
+      paper-radio-button-checked-color: "var(--accent-color)"
       code-editor-background-color: "#0d1226"
-      codemirror-property: "#68d8ff"
+      codemirror-property: "var(--accent-color)"
 
-      # Bubble Card variables
+      # Bubble Card Variables
       bubble-main-background-color: "rgba(22, 30, 58, 0.62)"
-      bubble-secondary-background-color: "rgba(160, 200, 255, 0.12)"
-      bubble-accent-color: "#00f0ff"
-      bubble-icon-background-color: "rgba(160, 200, 255, 0.14)"
-      bubble-sub-button-background-color: "rgba(160, 200, 255, 0.14)"
+      bubble-secondary-background-color: "var(--glass-chip-background)"
+      bubble-accent-color: "var(--accent-color)"
+      bubble-icon-background-color: "var(--glass-chip-background)"
+      bubble-sub-button-background-color: "var(--glass-chip-background)"
       bubble-sub-slider-background-color: "rgba(160, 200, 255, 0.16)"
       bubble-sub-button-dark-text-color: "#08101f"
       bubble-border: "1px solid rgba(200, 230, 255, 0.22)"
@@ -163,12 +165,12 @@ Bubble Glass:
         inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.45)
       bubble-light-white-color: "#fff3c4"
       bubble-media-player-slider-background-color: "rgba(160, 200, 255, 0.16)"
-      bubble-select-background-color: "rgba(160, 200, 255, 0.12)"
+      bubble-select-background-color: "var(--glass-chip-background)"
       bubble-select-list-item-accent-color: "rgba(0, 240, 255, 0.20)"
       bubble-select-list-background-color: "rgba(20, 27, 55, 0.98)"
-      bubble-horizontal-buttons-stack-background-color: "rgba(22, 30, 58, 0.55)"
+      bubble-horizontal-buttons-stack-background-color: "var(--glass-background)"
       bubble-line-background-color: "rgba(200, 230, 255, 0.24)"
-      bubble-pop-up-main-background-color: "rgba(160, 200, 255, 0.12)"
+      bubble-pop-up-main-background-color: "var(--glass-chip-background)"
       bubble-pop-up-background-color: "rgba(13, 18, 38, 0.82)"
       bubble-backdrop-background-color: "rgba(2, 4, 12, 0.72)"
       bubble-footer-box-shadow: >-
@@ -177,8 +179,8 @@ Bubble Glass:
         inset 0 1px 0 rgba(255, 255, 255, 0.10)
 
     light:
-      # Core palette
-      primary-color: "#1368e8"
+      # Core Colors & Palette
+      primary-color: "#0055ff"
       accent-color: "#0055ff"
       accent-medium-color: "#0055ff"
       primary-text-color: "#17213b"
@@ -192,9 +194,6 @@ Bubble Glass:
       clear-background-color: "rgba(255, 255, 255, 0.58)"
       divider-color: "rgba(45, 72, 112, 0.14)"
       scrollbar-thumb-color: "rgba(45, 72, 112, 0.25)"
-      label-badge-background-color: "rgba(255, 255, 255, 0.70)"
-      label-badge-text-color: "var(--primary-text-color)"
-      ha-chip-background-color: "rgba(214, 234, 255, 0.55)"
 
       # Background
       lovelace-background: >-
@@ -205,7 +204,7 @@ Bubble Glass:
         linear-gradient(160deg, #f8fbff 0%, #e8f1ff 45%, #ece7ff 72%, #f6f3ff 100%)
       background-image: "var(--lovelace-background)"
 
-      # Glass token system
+      # Unified Glass Tokens
       ha-card-background: "rgba(255, 255, 255, 0.55)"
       card-background-color: "var(--ha-card-background)"
       ha-card-border-color: "rgba(255, 255, 255, 0.95)"
@@ -221,12 +220,12 @@ Bubble Glass:
       glass-background-soft: "rgba(255, 255, 255, 0.42)"
       glass-border-color: "rgba(255, 255, 255, 0.95)"
       glass-rim-color: "rgba(120, 160, 255, 0.08)"
-      glass-chip-background: "rgba(255, 255, 255, 0.45)"
+      glass-chip-background: "rgba(214, 234, 255, 0.62)"
       glass-highlight-color: "rgba(255, 255, 255, 1)"
       glass-shadow: "0 22px 48px rgba(55, 78, 118, 0.20)"
       glass-backdrop-filter: "blur(24px) saturate(180%) brightness(1.06)"
 
-      # Header, sidebar, dialogs
+      # Header, Sidebar, Dialogs
       app-header-background-color: "rgba(248, 251, 255, 0.45)"
       app-header-backdrop-filter: "blur(28px) saturate(170%)"
       app-header-text-color: "var(--primary-text-color)"
@@ -235,8 +234,8 @@ Bubble Glass:
       sidebar-text-color: "#34435f"
       sidebar-icon-color: "#71809a"
       sidebar-selected-text-color: "#17213b"
-      sidebar-selected-icon-color: "#1368e8"
-      sidebar-selected-background-color: "rgba(19, 104, 232, 0.10)"
+      sidebar-selected-icon-color: "var(--accent-color)"
+      sidebar-selected-background-color: "rgba(0, 85, 255, 0.10)"
       paper-listbox-background-color: "rgba(250, 252, 255, 0.96)"
       mdc-dialog-scrim-color: "rgba(32, 46, 74, 0.38)"
       paper-dialog-background-color: "rgba(255, 255, 255, 0.88)"
@@ -245,7 +244,12 @@ Bubble Glass:
       more-info-header-background: "rgba(255, 255, 255, 0.45)"
       menu-background-color: "rgba(250, 252, 255, 0.96)"
 
-      # Controls & inputs
+      # Badges & Chips
+      label-badge-background-color: "var(--glass-background-soft)"
+      label-badge-text-color: "var(--primary-text-color)"
+      ha-chip-background-color: "var(--glass-background-soft)"
+
+      # Controls & Inputs
       input-fill-color: "rgba(255, 255, 255, 0.52)"
       input-ink-color: "var(--primary-text-color)"
       input-label-ink-color: "var(--secondary-text-color)"
@@ -254,33 +258,33 @@ Bubble Glass:
       input-disabled-label-ink-color: "var(--disabled-text-color)"
       input-idle-line-color: "transparent"
       input-dropdown-icon-color: "var(--secondary-text-color)"
-      input-hover-line-color: "var(--primary-color)"
+      input-hover-line-color: "var(--accent-color)"
       mdc-text-field-fill-color: "rgba(255, 255, 255, 0.52)"
       mdc-text-field-ink-color: "var(--primary-text-color)"
       mdc-text-field-label-ink-color: "var(--secondary-text-color)"
       mdc-select-fill-color: "rgba(255, 255, 255, 0.52)"
       mdc-theme-primary: "var(--accent-color)"
-      paper-input-container-focus-color: "var(--primary-color)"
-      paper-slider-knob-color: "var(--primary-color)"
-      paper-slider-pin-color: "var(--primary-color)"
-      paper-slider-active-color: "var(--primary-color)"
+      paper-input-container-focus-color: "var(--accent-color)"
+      paper-slider-knob-color: "var(--accent-color)"
+      paper-slider-pin-color: "var(--accent-color)"
+      paper-slider-active-color: "var(--accent-color)"
       paper-slider-container-color: "rgba(23, 33, 59, 0.14)"
-      switch-checked-button-color: "#0055ff"
+      switch-checked-button-color: "var(--accent-color)"
       switch-checked-track-color: "rgba(0, 85, 255, 0.55)"
       switch-unchecked-button-color: "#8a96aa"
       switch-unchecked-track-color: "rgba(82, 97, 124, 0.22)"
-      paper-toggle-button-checked-button-color: "#0055ff"
+      paper-toggle-button-checked-button-color: "var(--accent-color)"
       paper-toggle-button-checked-bar-color: "rgba(0, 85, 255, 0.55)"
-      paper-radio-button-checked-color: "var(--primary-color)"
+      paper-radio-button-checked-color: "var(--accent-color)"
       code-editor-background-color: "#eef4ff"
-      codemirror-property: "#1368e8"
+      codemirror-property: "var(--accent-color)"
 
-      # Bubble Card variables
+      # Bubble Card Variables
       bubble-main-background-color: "rgba(255, 255, 255, 0.58)"
-      bubble-secondary-background-color: "rgba(214, 234, 255, 0.55)"
-      bubble-accent-color: "#0055ff"
-      bubble-icon-background-color: "rgba(214, 234, 255, 0.62)"
-      bubble-sub-button-background-color: "rgba(214, 234, 255, 0.62)"
+      bubble-secondary-background-color: "var(--glass-chip-background)"
+      bubble-accent-color: "var(--accent-color)"
+      bubble-icon-background-color: "var(--glass-chip-background)"
+      bubble-sub-button-background-color: "var(--glass-chip-background)"
       bubble-sub-slider-background-color: "rgba(214, 234, 255, 0.70)"
       bubble-sub-button-dark-text-color: "#17213b"
       bubble-border: "1px solid rgba(255, 255, 255, 0.95)"
@@ -291,10 +295,10 @@ Bubble Glass:
         inset 0 -1.5px 1px 0 rgba(70, 100, 160, 0.12)
       bubble-light-white-color: "#fff1b5"
       bubble-media-player-slider-background-color: "rgba(23, 33, 59, 0.10)"
-      bubble-select-background-color: "rgba(214, 234, 255, 0.55)"
+      bubble-select-background-color: "var(--glass-chip-background)"
       bubble-select-list-item-accent-color: "rgba(0, 85, 255, 0.16)"
       bubble-select-list-background-color: "rgba(250, 252, 255, 0.96)"
-      bubble-horizontal-buttons-stack-background-color: "rgba(255, 255, 255, 0.45)"
+      bubble-horizontal-buttons-stack-background-color: "var(--glass-background)"
       bubble-line-background-color: "rgba(45, 72, 112, 0.20)"
       bubble-pop-up-main-background-color: "rgba(214, 234, 255, 0.60)"
       bubble-pop-up-background-color: "rgba(246, 250, 255, 0.84)"
