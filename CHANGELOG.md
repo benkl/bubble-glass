@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
 
+## v1.5.0 - 2026-09-28
+
+### Changed
+
+- **Volumetric 3D Glass Shadows**: Added deep multi-layer ambient shadow and top/bottom dual-inset highlights/shadows to all buttons and cards to give elements tangible tactile volume and depth.
+- **Removed frames on line separators / heading cards**: Added card-mod host exclusions for `hui-heading-card`, `hui-glance-card`, and the outer wrapper of `type-custom-bubble-card` so line separators and title headings render frameless without enclosing glass boxes.
+- **High Contrast Active Switches**: Brightened active switch and toggle colors (vibrant `#00f0ff` cyan in dark mode, `#0055ff` electric blue in light mode) with matching high-contrast track opacity so active/on states pop unmistakably.
+
+
 ## v1.4.3 - 2026-09-28
 
 ### Changed

@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.4.3
+# Bubble Glass v1.5.0
 # Derived from the MIT-licensed Bubble theme by Clooos.
 # https://github.com/Clooos/Bubble
 Bubble Glass:
@@ -142,12 +142,12 @@ Bubble Glass:
       paper-slider-pin-color: "var(--primary-color)"
       paper-slider-active-color: "var(--primary-color)"
       paper-slider-container-color: "rgba(255, 255, 255, 0.16)"
-      switch-checked-button-color: "var(--primary-color)"
-      switch-checked-track-color: "rgba(104, 216, 255, 0.44)"
+      switch-checked-button-color: "#00f0ff"
+      switch-checked-track-color: "rgba(0, 240, 255, 0.65)"
       switch-unchecked-button-color: "#8a94ac"
       switch-unchecked-track-color: "rgba(138, 148, 172, 0.30)"
-      paper-toggle-button-checked-button-color: "var(--primary-color)"
-      paper-toggle-button-checked-bar-color: "rgba(104, 216, 255, 0.44)"
+      paper-toggle-button-checked-button-color: "#00f0ff"
+      paper-toggle-button-checked-bar-color: "rgba(0, 240, 255, 0.65)"
       paper-radio-button-checked-color: "var(--primary-color)"
       code-editor-background-color: "#0d1226"
       codemirror-property: "#68d8ff"
@@ -155,16 +155,17 @@ Bubble Glass:
       # Bubble Card glass system
       bubble-main-background-color: "rgba(22, 30, 58, 0.62)"
       bubble-secondary-background-color: "rgba(160, 200, 255, 0.12)"
-      bubble-accent-color: "#68d8ff"
+      bubble-accent-color: "#00f0ff"
       bubble-icon-background-color: "rgba(160, 200, 255, 0.14)"
       bubble-sub-button-background-color: "rgba(160, 200, 255, 0.14)"
       bubble-sub-slider-background-color: "rgba(160, 200, 255, 0.16)"
       bubble-sub-button-dark-text-color: "#08101f"
       bubble-border: "1px solid rgba(200, 230, 255, 0.22)"
       bubble-box-shadow: >-
-        0 18px 40px rgba(0, 0, 0, 0.38),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        inset 0 -1px 0 rgba(120, 170, 255, 0.05)
+        0 14px 34px -4px rgba(0, 0, 0, 0.55),
+        0 4px 10px 0 rgba(0, 0, 0, 0.30),
+        inset 0 1.5px 0.5px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.45)
       bubble-button-main-background-color: "rgba(22, 30, 58, 0.62)"
       bubble-button-icon-background-color: "rgba(160, 200, 255, 0.14)"
       bubble-button-box-shadow: "var(--bubble-box-shadow)"
@@ -288,12 +289,12 @@ Bubble Glass:
       paper-slider-pin-color: "var(--primary-color)"
       paper-slider-active-color: "var(--primary-color)"
       paper-slider-container-color: "rgba(23, 33, 59, 0.14)"
-      switch-checked-button-color: "var(--primary-color)"
-      switch-checked-track-color: "rgba(19, 104, 232, 0.32)"
+      switch-checked-button-color: "#0055ff"
+      switch-checked-track-color: "rgba(0, 85, 255, 0.55)"
       switch-unchecked-button-color: "#8a96aa"
       switch-unchecked-track-color: "rgba(82, 97, 124, 0.22)"
-      paper-toggle-button-checked-button-color: "var(--primary-color)"
-      paper-toggle-button-checked-bar-color: "rgba(19, 104, 232, 0.32)"
+      paper-toggle-button-checked-button-color: "#0055ff"
+      paper-toggle-button-checked-bar-color: "rgba(0, 85, 255, 0.55)"
       paper-radio-button-checked-color: "var(--primary-color)"
       code-editor-background-color: "#eef4ff"
       codemirror-property: "#1368e8"
@@ -301,16 +302,17 @@ Bubble Glass:
       # Bubble Card glass system
       bubble-main-background-color: "rgba(255, 255, 255, 0.58)"
       bubble-secondary-background-color: "rgba(214, 234, 255, 0.55)"
-      bubble-accent-color: "#1368e8"
+      bubble-accent-color: "#0055ff"
       bubble-icon-background-color: "rgba(214, 234, 255, 0.62)"
       bubble-sub-button-background-color: "rgba(214, 234, 255, 0.62)"
       bubble-sub-slider-background-color: "rgba(214, 234, 255, 0.70)"
       bubble-sub-button-dark-text-color: "#17213b"
       bubble-border: "1px solid rgba(255, 255, 255, 0.95)"
       bubble-box-shadow: >-
-        0 18px 40px rgba(55, 78, 118, 0.19),
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        inset 0 -1px 0 rgba(120, 160, 255, 0.06)
+        0 14px 30px -4px rgba(50, 75, 120, 0.25),
+        0 4px 10px 0 rgba(50, 75, 120, 0.12),
+        inset 0 1.5px 0.5px 0 rgba(255, 255, 255, 1),
+        inset 0 -1.5px 1px 0 rgba(70, 100, 160, 0.12)
       bubble-button-main-background-color: "rgba(255, 255, 255, 0.58)"
       bubble-button-icon-background-color: "rgba(214, 234, 255, 0.62)"
       bubble-button-box-shadow: "var(--bubble-box-shadow)"
@@ -362,6 +364,15 @@ Bubble Glass:
       -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
       transition: transform 180ms ease, border-color 180ms ease,
         box-shadow 180ms ease;
+    }
+    :host(hui-heading-card) ha-card,
+    :host(hui-glance-card) ha-card,
+    :host(.type-custom-bubble-card) ha-card {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
     }
     @media (prefers-reduced-motion: reduce) {
       ha-card {
