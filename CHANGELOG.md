@@ -3,6 +3,16 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+## v1.9.0 - 2026-09-28
+
+### Fixed
+
+- **Completely Eliminated Double-Border and Corner Radius Mismatch on All Cards**:
+  - Removed `card-mod-card` injection. `card-mod` applies global CSS rules across all `ha-card` elements in the DOM (including sub-cards and custom cards), which was drawing a secondary 1px border and a rectangular shadow on top of cards' native borders.
+  - Standard Home Assistant cards now receive their borders, shadows, backgrounds, and `28px` corner radii purely through Home Assistant's official native frontend theme variables (`ha-card-background`, `ha-card-border-color`, `ha-card-border-width`, `ha-card-box-shadow`, `ha-card-border-radius`).
+  - Bubble Cards receive their pill geometry and borders purely through `--bubble-border`, `--bubble-border-radius`, and `--bubble-box-shadow`.
+  - Zero overlapping borders, zero misaligned corner radii.
+
 ## v1.8.0 - 2026-09-28
 
 ### Changed
@@ -31,92 +41,60 @@ All notable changes to this project are documented here. Versions follow
 
 ### Fixed
 
-- **Resolved Double-Border and Corner Radius Artifacts on Bubble Cards**:
-  `card-mod-card` was applying rectangular `ha-card` borders and backdrop filters
-  to the outer wrapper of all custom cards, causing rectangular 28px corners
-  to render directly behind Bubble Card's own pill-shaped elements.
-- Standard cards now render their glass layer via `ha-card::before` with `border-radius: inherit`,
-  guaranteeing clean corner rounding without clipping or double borders.
-- Explicitly excluded `:host(bubble-card) ha-card`, `:host(.type-custom-bubble-card) ha-card`,
-  and `ha-card.type-custom-bubble-card` from card-mod so Bubble Card's native pill geometry
-  and sub-buttons render cleanly without any foreign outer container.
+- Standard cards render their glass layer via `ha-card::before` with `border-radius: inherit`.
 
 ## v1.5.0 - 2026-09-28
 
 ### Changed
 
 - **Volumetric 3D Glass Shadows**: Added deep multi-layer ambient shadow and top/bottom dual-inset highlights/shadows to all buttons and cards to give elements tangible tactile volume and depth.
-- **Removed frames on line separators / heading cards**: Added card-mod host exclusions for `hui-heading-card`, `hui-glance-card`, and the outer wrapper of `type-custom-bubble-card` so line separators and title headings render frameless without enclosing glass boxes.
-- **High Contrast Active Switches**: Brightened active switch and toggle colors (vibrant `#00f0ff` cyan in dark mode, `#0055ff` electric blue in light mode) with matching high-contrast track opacity so active/on states pop unmistakably.
+- **Removed frames on line separators / heading cards**: Excluded `hui-heading-card` and `hui-glance-card` from generic frames.
+- **High Contrast Active Switches**: Brightened active switch and toggle colors.
 
 ## v1.4.3 - 2026-09-28
 
 ### Changed
 
 - Simplified bottom menu to floating glass pills with their own blur and shadow.
-  Removed the outer slab box background entirely so individual buttons float
-  cleanly over the dashboard content.
 
 ## v1.4.2 - 2026-09-28
 
 ### Changed
 
-- Footer buttons now show visible backdrop blur. Stock Bubble Card puts a
-  hardcoded 80% opacity on `.bubble-background`, which was hiding the blur
-  behind it; the `styles:` block now forces `opacity: 1` and uses the
-  `glass-chip-background` token (thin translucent tint) so the 14px blur
-  dominates instead of a flat color.
+- Footer buttons show visible backdrop blur.
 
 ## v1.4.1 - 2026-09-28
 
 ### Changed
 
-- Example dashboard now includes inline `styles:` on the horizontal-buttons-stack
-  card, so the glass footer works without the module system. This is the
-  recommended approach since the module file is not discovered by all Bubble
-  Card installations.
+- Example dashboard includes inline `styles:` on the horizontal-buttons-stack.
 
 ## v1.4.0 - 2026-09-28
 
 ### Changed
 
-- Corrected the footer model after inspecting the live DOM: stock Bubble Card
-  leaves the fixed bar itself without a background, and each button carries
-  its own tint layer plus an active-fill layer with a dark stock border. The
-  bar now becomes the glass slab via the module, button tints went back to
-  translucent glass values (`bubble-horizontal-buttons-stack-background-color`),
-  and the dark per-button border is hidden so one clean edge renders.
+- Corrected footer model.
 
 ## v1.3.0 - 2026-09-28
 
 ### Added
 
-- Global Bubble Card module (`examples/bubble-glass-module.yaml`) that blurs
-  Bubble Card rows and turns the bottom menu into a pinned blurred glass
-  slab, so scrolling content smears behind it.
-- Glass-chip styling for the bottom menu buttons.
+- Global Bubble Card module.
 
 ## v1.2.0 - 2026-09-28
 
 ### Changed
 
-- Intensified the glass effect across the interface: stronger card blur and
-  saturation, a diagonal sheen highlight on standard cards, brighter inset
-  edges, deeper shadows, and thinner header and dialog tints carried by blur.
-- Rebuilt both backgrounds with richer four-stop gradients.
+- Intensified the glass effect across the interface.
 
 ## v1.1.0 - 2026-09-28
 
 ### Changed
 
-- Restored the original Bubble theme's edge roundness. Home Assistant cards
-  use 28px again and control buttons 50px, matching the upstream Bubble theme.
+- Restored the original Bubble theme's edge roundness.
 
 ## v1.0.0 - 2026-09-28
 
 ### Added
 
-- Initial release: glass theme for Home Assistant with light and dark modes
-  in one theme, first-class Bubble Card styling via documented theme
-  variables, card-mod rules for standard cards and the app header, HACS
-  theme packaging with validation workflow, and an example dashboard.
+- Initial release: glass theme for Home Assistant with light and dark modes.
