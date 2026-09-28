@@ -1,0 +1,90 @@
+---
+title: Bubble Glass demo
+views:
+  - title: Home
+    path: home
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Living room
+            icon: mdi:sofa
+          - type: custom:bubble-card
+            card_type: button
+            button_type: slider
+            entity: light.living_room
+            name: Ambient lights
+            icon: mdi:lightbulb-group
+            use_accent_color: true
+            sub_button:
+              - entity: sensor.living_room_temperature
+                state_content: state
+                show_icon: true
+              - entity: sensor.living_room_humidity
+                state_content: state
+                show_icon: true
+          - type: custom:bubble-card
+            card_type: climate
+            entity: climate.living_room
+            name: Climate
+          - type: custom:bubble-card
+            card_type: media-player
+            entity: media_player.living_room
+            name: Now playing
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Rooms
+            icon: mdi:floor-plan
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Kitchen
+            icon: mdi:silverware-fork-knife
+            button_action:
+              tap_action:
+                action: navigate
+                navigation_path: "#kitchen"
+          - type: custom:bubble-card
+            card_type: button
+            entity: cover.bedroom
+            name: Bedroom shade
+            icon: mdi:blinds
+
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            hash: "#kitchen"
+            name: Kitchen
+            icon: mdi:silverware-fork-knife
+            popup_mode: adaptive-dialog
+            bg_opacity: "82"
+            bg_blur: "28"
+            shadow_opacity: "25"
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                button_type: slider
+                entity: light.kitchen
+                name: Kitchen lights
+              - type: custom:bubble-card
+                card_type: select
+                entity: input_select.kitchen_scene
+                name: Scene
+
+      - type: grid
+        cards:
+          - type: custom:bubble-card
+            card_type: horizontal-buttons-stack
+            highlight_current_view: true
+            auto_order: false
+            1_name: Home
+            1_icon: mdi:home-variant
+            1_link: /lovelace/home
+            2_name: Kitchen
+            2_icon: mdi:silverware-fork-knife
+            2_link: "#kitchen"

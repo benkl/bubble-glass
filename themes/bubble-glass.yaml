@@ -1,0 +1,369 @@
+---
+# Bubble Glass
+# Derived from the MIT-licensed Bubble theme by Clooos.
+# https://github.com/Clooos/Bubble
+Bubble Glass:
+  card-mod-theme: "Bubble Glass"
+
+  # Shared geometry and spacing
+  primary-font-family: >-
+    Inter, ui-rounded, "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif
+  paper-font-common-base_-_font-family: "var(--primary-font-family)"
+  paper-font-common-code_-_font-family: "var(--primary-font-family)"
+  paper-font-body1_-_font-family: "var(--primary-font-family)"
+  paper-font-subhead_-_font-family: "var(--primary-font-family)"
+  paper-font-headline_-_font-family: "var(--primary-font-family)"
+  paper-font-caption_-_font-family: "var(--primary-font-family)"
+  paper-font-title_-_font-family: "var(--primary-font-family)"
+  ha-card-header-font-family: "var(--primary-font-family)"
+  ha-card-border-radius: "24px"
+  ha-dialog-border-radius: "28px"
+  control-button-border-radius: "18px"
+  grid-card-gap: "16px"
+  horizontal-stack-card-gap: "16px"
+  vertical-stack-card-gap: "16px"
+  masonry-view-card-margin: "8px 8px 16px"
+
+  # Bubble Card geometry. Bubble Card theme keys omit the CSS -- prefix.
+  bubble-border-radius: "22px"
+  bubble-icon-border-radius: "16px"
+  bubble-sub-button-border-radius: "14px"
+  bubble-sub-slider-border-radius: "14px"
+  bubble-sub-slider-height: "40px"
+  bubble-button-border-radius: "22px"
+  bubble-button-icon-border-radius: "16px"
+  bubble-media-player-border-radius: "22px"
+  bubble-media-player-buttons-border-radius: "14px"
+  bubble-media-player-icon-border-radius: "16px"
+  bubble-cover-border-radius: "22px"
+  bubble-cover-icon-border-radius: "16px"
+  bubble-select-border-radius: "22px"
+  bubble-select-list-border-radius: "18px"
+  bubble-select-button-border-radius: "14px"
+  bubble-select-icon-border-radius: "16px"
+  bubble-climate-border-radius: "22px"
+  bubble-climate-icon-border-radius: "16px"
+  bubble-calendar-border-radius: "22px"
+  bubble-pop-up-border-radius: "32px"
+  bubble-horizontal-buttons-stack-border-radius: "18px"
+  bubble-footer-width: "calc(100% - 32px)"
+  bubble-footer-bottom: "16px"
+
+  # State colors stay semantic in both modes.
+  state-active-color: "var(--accent-color)"
+  state-inactive-color: "var(--disabled-text-color)"
+  state-light-active-color: "#ffd166"
+  state-climate-heat-color: "#ff7a90"
+  state-climate-cool-color: "#54c7ff"
+  state-lock-locked-color: "#7ae7b8"
+  state-lock-unlocked-color: "#ff9d66"
+  state-alarm_control_panel-armed_away-color: "#ff7a90"
+  state-alarm_control_panel-armed_home-color: "#7ae7b8"
+  success-color: "#42d6a4"
+  warning-color: "#ffca62"
+  error-color: "#ff6685"
+  info-color: "var(--accent-color)"
+
+  modes:
+    dark:
+      # Core palette
+      primary-color: "#68d8ff"
+      accent-color: "#8b7cff"
+      accent-medium-color: "#8b7cff"
+      primary-text-color: "#f7f9ff"
+      text-primary-color: "#f7f9ff"
+      secondary-text-color: "#c3c9dc"
+      disabled-text-color: "#747c94"
+      text-medium-color: "#a4acc2"
+      text-medium-light-color: "#c3c9dc"
+      primary-background-color: "#080b18"
+      secondary-background-color: "rgba(22, 29, 55, 0.76)"
+      clear-background-color: "rgba(13, 18, 38, 0.72)"
+      divider-color: "rgba(188, 220, 255, 0.14)"
+      scrollbar-thumb-color: "rgba(188, 220, 255, 0.28)"
+
+      # Layered gradients make translucency visible without remote assets.
+      lovelace-background: >-
+        radial-gradient(circle at 12% 8%, rgba(64, 214, 255, 0.22), transparent 34%),
+        radial-gradient(circle at 88% 18%, rgba(151, 99, 255, 0.24), transparent 32%),
+        radial-gradient(circle at 52% 92%, rgba(38, 108, 255, 0.18), transparent 38%),
+        linear-gradient(145deg, #080b18 0%, #11152b 48%, #090d1f 100%)
+      background-image: "var(--lovelace-background)"
+
+      # Glass surfaces
+      ha-card-background: "rgba(20, 27, 52, 0.64)"
+      card-background-color: "var(--ha-card-background)"
+      ha-card-border-color: "rgba(215, 235, 255, 0.18)"
+      ha-card-border-width: "1px"
+      ha-card-border-style: "solid"
+      ha-card-border: "1px solid rgba(215, 235, 255, 0.18)"
+      ha-card-box-shadow: >-
+        0 18px 45px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12)
+      glass-background: "rgba(20, 27, 52, 0.64)"
+      glass-background-strong: "rgba(24, 32, 62, 0.84)"
+      glass-background-soft: "rgba(255, 255, 255, 0.075)"
+      glass-border-color: "rgba(215, 235, 255, 0.18)"
+      glass-highlight-color: "rgba(255, 255, 255, 0.12)"
+      glass-shadow: "0 18px 45px rgba(0, 0, 0, 0.34)"
+      glass-backdrop-filter: "blur(22px) saturate(150%)"
+
+      # Header and sidebar
+      app-header-background-color: "rgba(8, 11, 24, 0.58)"
+      app-header-backdrop-filter: "blur(24px) saturate(160%)"
+      app-header-text-color: "var(--primary-text-color)"
+      app-theme-color: "#10162d"
+      sidebar-background-color: "rgba(11, 15, 31, 0.78)"
+      sidebar-text-color: "#dce4f8"
+      sidebar-icon-color: "#909bb6"
+      sidebar-selected-text-color: "#ffffff"
+      sidebar-selected-icon-color: "#68d8ff"
+      sidebar-selected-background-color: "rgba(104, 216, 255, 0.12)"
+      paper-listbox-background-color: "rgba(24, 32, 62, 0.96)"
+
+      # Dialogs and menus
+      mdc-dialog-scrim-color: "rgba(2, 4, 12, 0.72)"
+      paper-dialog-background-color: "rgba(20, 27, 52, 0.90)"
+      ha-dialog-surface-background: "rgba(20, 27, 52, 0.86)"
+      ha-dialog-surface-backdrop-filter: "blur(28px) saturate(150%)"
+      more-info-header-background: "rgba(255, 255, 255, 0.06)"
+      menu-background-color: "rgba(24, 32, 62, 0.96)"
+
+      # Inputs and controls
+      input-fill-color: "rgba(255, 255, 255, 0.07)"
+      input-ink-color: "var(--primary-text-color)"
+      input-label-ink-color: "var(--secondary-text-color)"
+      input-disabled-fill-color: "rgba(255, 255, 255, 0.035)"
+      input-disabled-ink-color: "var(--disabled-text-color)"
+      input-disabled-label-ink-color: "var(--disabled-text-color)"
+      input-idle-line-color: "transparent"
+      input-dropdown-icon-color: "var(--secondary-text-color)"
+      input-hover-line-color: "var(--primary-color)"
+      mdc-text-field-fill-color: "rgba(255, 255, 255, 0.07)"
+      mdc-text-field-ink-color: "var(--primary-text-color)"
+      mdc-text-field-label-ink-color: "var(--secondary-text-color)"
+      mdc-select-fill-color: "rgba(255, 255, 255, 0.07)"
+      mdc-theme-primary: "var(--accent-color)"
+      paper-input-container-focus-color: "var(--primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-container-color: "rgba(255, 255, 255, 0.16)"
+      switch-checked-button-color: "var(--primary-color)"
+      switch-checked-track-color: "rgba(104, 216, 255, 0.44)"
+      switch-unchecked-button-color: "#8a94ac"
+      switch-unchecked-track-color: "rgba(138, 148, 172, 0.30)"
+      paper-toggle-button-checked-button-color: "var(--primary-color)"
+      paper-toggle-button-checked-bar-color: "rgba(104, 216, 255, 0.44)"
+      paper-radio-button-checked-color: "var(--primary-color)"
+      code-editor-background-color: "#0d1226"
+      codemirror-property: "#68d8ff"
+
+      # Bubble Card glass system
+      bubble-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-secondary-background-color: "rgba(255, 255, 255, 0.09)"
+      bubble-accent-color: "#68d8ff"
+      bubble-icon-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-sub-button-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-sub-slider-background-color: "rgba(255, 255, 255, 0.12)"
+      bubble-sub-button-dark-text-color: "#08101f"
+      bubble-border: "1px solid rgba(215, 235, 255, 0.18)"
+      bubble-box-shadow: >-
+        0 14px 32px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12)
+      bubble-button-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-button-icon-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-button-box-shadow: "var(--bubble-box-shadow)"
+      bubble-light-white-color: "#fff3c4"
+      bubble-media-player-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-media-player-slider-background-color: "rgba(255, 255, 255, 0.13)"
+      bubble-media-player-icon-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-media-player-box-shadow: "var(--bubble-box-shadow)"
+      bubble-cover-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-cover-icon-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-cover-box-shadow: "var(--bubble-box-shadow)"
+      bubble-select-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-select-background-color: "rgba(255, 255, 255, 0.09)"
+      bubble-select-list-item-accent-color: "rgba(104, 216, 255, 0.18)"
+      bubble-select-list-background-color: "rgba(24, 32, 62, 0.96)"
+      bubble-select-arrow-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-select-icon-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-select-box-shadow: "var(--bubble-box-shadow)"
+      bubble-climate-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-climate-button-background-color: "rgba(255, 255, 255, 0.10)"
+      bubble-climate-accent-color: "#68d8ff"
+      bubble-climate-box-shadow: "var(--bubble-box-shadow)"
+      bubble-calendar-main-background-color: "rgba(20, 27, 52, 0.72)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(20, 27, 52, 0.84)"
+      bubble-line-background-color: "rgba(215, 235, 255, 0.20)"
+      bubble-pop-up-main-background-color: "rgba(255, 255, 255, 0.09)"
+      bubble-pop-up-background-color: "rgba(13, 18, 38, 0.86)"
+      bubble-backdrop-background-color: "rgba(2, 4, 12, 0.72)"
+      bubble-footer-box-shadow: "0 18px 44px rgba(0, 0, 0, 0.42)"
+
+    light:
+      # Core palette
+      primary-color: "#1368e8"
+      accent-color: "#7257e8"
+      accent-medium-color: "#7257e8"
+      primary-text-color: "#17213b"
+      text-primary-color: "#17213b"
+      secondary-text-color: "#52617c"
+      disabled-text-color: "#8a96aa"
+      text-medium-color: "#65748e"
+      text-medium-light-color: "#52617c"
+      primary-background-color: "#eaf2ff"
+      secondary-background-color: "rgba(255, 255, 255, 0.70)"
+      clear-background-color: "rgba(255, 255, 255, 0.58)"
+      divider-color: "rgba(45, 72, 112, 0.14)"
+      scrollbar-thumb-color: "rgba(45, 72, 112, 0.25)"
+
+      # Layered gradients make translucency visible without remote assets.
+      lovelace-background: >-
+        radial-gradient(circle at 10% 8%, rgba(63, 202, 255, 0.30), transparent 34%),
+        radial-gradient(circle at 90% 16%, rgba(157, 112, 255, 0.25), transparent 32%),
+        radial-gradient(circle at 50% 96%, rgba(70, 128, 255, 0.18), transparent 38%),
+        linear-gradient(145deg, #f7fbff 0%, #eaf2ff 48%, #f2ecff 100%)
+      background-image: "var(--lovelace-background)"
+
+      # Glass surfaces
+      ha-card-background: "rgba(255, 255, 255, 0.62)"
+      card-background-color: "var(--ha-card-background)"
+      ha-card-border-color: "rgba(255, 255, 255, 0.84)"
+      ha-card-border-width: "1px"
+      ha-card-border-style: "solid"
+      ha-card-border: "1px solid rgba(255, 255, 255, 0.84)"
+      ha-card-box-shadow: >-
+        0 18px 42px rgba(55, 78, 118, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95)
+      glass-background: "rgba(255, 255, 255, 0.62)"
+      glass-background-strong: "rgba(255, 255, 255, 0.84)"
+      glass-background-soft: "rgba(255, 255, 255, 0.45)"
+      glass-border-color: "rgba(255, 255, 255, 0.84)"
+      glass-highlight-color: "rgba(255, 255, 255, 0.95)"
+      glass-shadow: "0 18px 42px rgba(55, 78, 118, 0.16)"
+      glass-backdrop-filter: "blur(22px) saturate(150%)"
+
+      # Header and sidebar
+      app-header-background-color: "rgba(247, 251, 255, 0.60)"
+      app-header-backdrop-filter: "blur(24px) saturate(160%)"
+      app-header-text-color: "var(--primary-text-color)"
+      app-theme-color: "#dcecff"
+      sidebar-background-color: "rgba(245, 250, 255, 0.78)"
+      sidebar-text-color: "#34435f"
+      sidebar-icon-color: "#71809a"
+      sidebar-selected-text-color: "#17213b"
+      sidebar-selected-icon-color: "#1368e8"
+      sidebar-selected-background-color: "rgba(19, 104, 232, 0.10)"
+      paper-listbox-background-color: "rgba(250, 252, 255, 0.96)"
+
+      # Dialogs and menus
+      mdc-dialog-scrim-color: "rgba(32, 46, 74, 0.38)"
+      paper-dialog-background-color: "rgba(255, 255, 255, 0.90)"
+      ha-dialog-surface-background: "rgba(255, 255, 255, 0.84)"
+      ha-dialog-surface-backdrop-filter: "blur(28px) saturate(150%)"
+      more-info-header-background: "rgba(255, 255, 255, 0.45)"
+      menu-background-color: "rgba(250, 252, 255, 0.96)"
+
+      # Inputs and controls
+      input-fill-color: "rgba(255, 255, 255, 0.52)"
+      input-ink-color: "var(--primary-text-color)"
+      input-label-ink-color: "var(--secondary-text-color)"
+      input-disabled-fill-color: "rgba(255, 255, 255, 0.28)"
+      input-disabled-ink-color: "var(--disabled-text-color)"
+      input-disabled-label-ink-color: "var(--disabled-text-color)"
+      input-idle-line-color: "transparent"
+      input-dropdown-icon-color: "var(--secondary-text-color)"
+      input-hover-line-color: "var(--primary-color)"
+      mdc-text-field-fill-color: "rgba(255, 255, 255, 0.52)"
+      mdc-text-field-ink-color: "var(--primary-text-color)"
+      mdc-text-field-label-ink-color: "var(--secondary-text-color)"
+      mdc-select-fill-color: "rgba(255, 255, 255, 0.52)"
+      mdc-theme-primary: "var(--accent-color)"
+      paper-input-container-focus-color: "var(--primary-color)"
+      paper-slider-knob-color: "var(--primary-color)"
+      paper-slider-pin-color: "var(--primary-color)"
+      paper-slider-active-color: "var(--primary-color)"
+      paper-slider-container-color: "rgba(23, 33, 59, 0.14)"
+      switch-checked-button-color: "var(--primary-color)"
+      switch-checked-track-color: "rgba(19, 104, 232, 0.32)"
+      switch-unchecked-button-color: "#8a96aa"
+      switch-unchecked-track-color: "rgba(82, 97, 124, 0.22)"
+      paper-toggle-button-checked-button-color: "var(--primary-color)"
+      paper-toggle-button-checked-bar-color: "rgba(19, 104, 232, 0.32)"
+      paper-radio-button-checked-color: "var(--primary-color)"
+      code-editor-background-color: "#eef4ff"
+      codemirror-property: "#1368e8"
+
+      # Bubble Card glass system
+      bubble-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-secondary-background-color: "rgba(255, 255, 255, 0.48)"
+      bubble-accent-color: "#1368e8"
+      bubble-icon-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-sub-button-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-sub-slider-background-color: "rgba(255, 255, 255, 0.62)"
+      bubble-sub-button-dark-text-color: "#17213b"
+      bubble-border: "1px solid rgba(255, 255, 255, 0.84)"
+      bubble-box-shadow: >-
+        0 14px 32px rgba(55, 78, 118, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95)
+      bubble-button-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-button-icon-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-button-box-shadow: "var(--bubble-box-shadow)"
+      bubble-light-white-color: "#fff1b5"
+      bubble-media-player-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-media-player-slider-background-color: "rgba(23, 33, 59, 0.10)"
+      bubble-media-player-icon-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-media-player-box-shadow: "var(--bubble-box-shadow)"
+      bubble-cover-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-cover-icon-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-cover-box-shadow: "var(--bubble-box-shadow)"
+      bubble-select-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-select-background-color: "rgba(255, 255, 255, 0.50)"
+      bubble-select-list-item-accent-color: "rgba(19, 104, 232, 0.14)"
+      bubble-select-list-background-color: "rgba(250, 252, 255, 0.96)"
+      bubble-select-arrow-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-select-icon-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-select-box-shadow: "var(--bubble-box-shadow)"
+      bubble-climate-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-climate-button-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-climate-accent-color: "#1368e8"
+      bubble-climate-box-shadow: "var(--bubble-box-shadow)"
+      bubble-calendar-main-background-color: "rgba(255, 255, 255, 0.68)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(255, 255, 255, 0.80)"
+      bubble-line-background-color: "rgba(45, 72, 112, 0.18)"
+      bubble-pop-up-main-background-color: "rgba(255, 255, 255, 0.55)"
+      bubble-pop-up-background-color: "rgba(245, 249, 255, 0.86)"
+      bubble-backdrop-background-color: "rgba(32, 46, 74, 0.38)"
+      bubble-footer-box-shadow: "0 18px 40px rgba(55, 78, 118, 0.22)"
+
+  # card-mod adds real blur to standard Home Assistant cards. Bubble Card uses
+  # its public theme variables above and does not depend on private selectors.
+  card-mod-card: |
+    ha-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--glass-background, var(--ha-card-background));
+      border: 1px solid var(--glass-border-color, var(--ha-card-border-color));
+      box-shadow:
+        var(--glass-shadow, var(--ha-card-box-shadow)),
+        inset 0 1px 0 var(--glass-highlight-color, transparent);
+      backdrop-filter: var(--glass-backdrop-filter, none);
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, none);
+      transition: transform 180ms ease, border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      ha-card {
+        transition: none;
+      }
+    }
+
+  card-mod-root: |
+    app-header,
+    .header {
+      backdrop-filter: var(--app-header-backdrop-filter, none);
+      -webkit-backdrop-filter: var(--app-header-backdrop-filter, none);
+      border-bottom: 1px solid var(--divider-color);
+    }
