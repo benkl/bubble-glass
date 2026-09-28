@@ -1,0 +1,60 @@
+---
+# Bubble Glass global module.
+#
+# Install: copy this file to <config>/bubble-modules.yaml (merge if the file
+# already exists), or recreate it in any Bubble Card under
+# Modules > Create new module. `is_global: true` applies it to all cards.
+#
+# The module reads the Bubble Glass theme tokens (--glass-*), so it follows
+# light and dark mode automatically. It adds:
+# - real backdrop blur to Bubble Card rows
+# - a pinned blurred glass slab to the bottom horizontal buttons stack, so
+#   scrolling dashboard content smears behind it
+# - glass-chip styling for the buttons in the bottom menu
+bubble_glass:
+  name: "Bubble Glass"
+  version: "1.0"
+  creator: "benkl"
+  description: >-
+    Backdrop blur for Bubble Card rows and the bottom menu, plus glass-chip
+    buttons for the horizontal buttons stack. Follows the Bubble Glass theme
+    tokens for light and dark mode.
+  is_global: true
+  code: |
+    /* Bubble Card rows: real backdrop blur */
+    .bubble-container {
+      backdrop-filter: var(--glass-backdrop-filter, none) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
+    }
+
+    /* Bottom menu: pinned glass slab. The bar is position:fixed, so dashboard
+       content scrolling underneath is blurred through it. */
+    .horizontal-buttons-stack-card .bubble-background {
+      backdrop-filter: var(--glass-backdrop-filter, none) !important;
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, none) !important;
+    }
+
+    /* Bottom menu buttons: glass chips floating on the slab. A ::before
+       layer with border-radius: inherit can never disagree with the
+       button's own radius, and Bubble Card's per-button highlight layer
+       (.bubble-background-color) keeps filling with the accent color when
+       active. Its stock 1px border is made transparent so only one edge
+       renders; two stacked borders with their own radii is what produced
+       ragged corners on mobile. No per-chip backdrop blur: the slab behind
+       already blurs, and stacked filtered layers bleed past rounded
+       corners on WebKit. */
+    .horizontal-buttons-stack-card .bubble-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--glass-chip-background, rgba(255, 255, 255, 0.4));
+      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.5));
+      box-shadow:
+        inset 0 1px 0 var(--glass-highlight-color, rgba(255, 255, 255, 0.6)),
+        0 6px 16px rgba(0, 0, 0, 0.16);
+      pointer-events: none;
+    }
+    .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
+      border-color: transparent !important;
+    }

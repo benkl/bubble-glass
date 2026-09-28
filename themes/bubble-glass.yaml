@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v1.2.0
+# Bubble Glass v1.3.0
 # Derived from the MIT-licensed Bubble theme by Clooos.
 # https://github.com/Clooos/Bubble
 Bubble Glass:
@@ -96,6 +96,7 @@ Bubble Glass:
       glass-background-soft: "rgba(160, 200, 255, 0.10)"
       glass-border-color: "rgba(200, 230, 255, 0.22)"
       glass-rim-color: "rgba(120, 170, 255, 0.06)"
+      glass-chip-background: "rgba(150, 190, 255, 0.10)"
       glass-highlight-color: "rgba(255, 255, 255, 0.16)"
       glass-shadow: "0 22px 50px rgba(0, 0, 0, 0.42)"
       glass-backdrop-filter: "blur(26px) saturate(170%)"
@@ -241,6 +242,7 @@ Bubble Glass:
       glass-background-soft: "rgba(255, 255, 255, 0.42)"
       glass-border-color: "rgba(255, 255, 255, 0.95)"
       glass-rim-color: "rgba(120, 160, 255, 0.08)"
+      glass-chip-background: "rgba(255, 255, 255, 0.45)"
       glass-highlight-color: "rgba(255, 255, 255, 1)"
       glass-shadow: "0 22px 48px rgba(55, 78, 118, 0.20)"
       glass-backdrop-filter: "blur(24px) saturate(180%) brightness(1.06)"

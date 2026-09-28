@@ -3,6 +3,22 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+
+## v1.3.0 - 2026-09-28
+
+### Added
+
+- Global Bubble Card module (`examples/bubble-glass-module.yaml`) that blurs
+  Bubble Card rows and turns the bottom menu into a pinned blurred glass
+  slab, so scrolling content smears behind it.
+- Glass-chip styling for the bottom menu buttons: each chip is a `::before`
+  layer with `border-radius: inherit` (radii can never disagree), Bubble
+  Card's own highlight layer keeps filling with the accent color when
+  active, and its stock border is hidden so only one edge renders. No
+  per-chip blur: the slab already blurs, and stacked filtered layers bleed
+  past rounded corners on WebKit.
+- `glass-chip-background` token (light and dark) consumed by the module.
+
 ## v1.2.0 - 2026-09-28
 
 

@@ -93,32 +93,17 @@ cards:
 
 See [`examples/bubble-card-dashboard.yaml`](examples/bubble-card-dashboard.yaml) for buttons, climate, media player, select, pop-up, sub-buttons, and the horizontal footer.
 
-## Stronger Bubble Card blur
+## Glass module (recommended)
 
-Bubble Card exposes color, border, radius, and shadow variables, but no global backdrop-filter variable. Its translucent cards show the gradient behind them and keep the stable public API.
+Bubble Card exposes color, border, radius, and shadow variables, but no backdrop-filter variable, and the bottom menu buttons have no background of their own. The global module in [`examples/bubble-glass-module.yaml`](examples/bubble-glass-module.yaml) closes the gap:
 
-For true per-card blur, create this Bubble Card module in one card under **Modules > Create new module**, then enable it on cards where the extra GPU cost is acceptable:
+- Real backdrop blur on every Bubble Card row
+- A pinned, blurred glass slab behind the bottom menu. The bar is fixed, so dashboard content scrolling underneath smears through it, which is what sells the glass
+- Glass-chip buttons in the bottom menu: translucent tint, one clean edge, inset highlight. The chip uses `border-radius: inherit`, so it can never fight the button's radius, and Bubble Card's active highlight still fills on top
 
-```yaml
-name: Bubble Glass blur
-version: 1.0
-creator: Local
-supported:
-  - button
-  - calendar
-  - climate
-  - cover
-  - media-player
-  - select
-code: |
-  .bubble-container,
-  .horizontal-buttons-stack-card .bubble-background {
-    backdrop-filter: var(--glass-backdrop-filter) !important;
-    -webkit-backdrop-filter: var(--glass-backdrop-filter) !important;
-  }
-```
+Install: copy the file to `<config>/bubble-modules.yaml` (merge it if that file already exists), or recreate it in any card under **Modules > Create new module** and toggle **All cards**. It reads the theme's `--glass-*` tokens, so it follows light and dark mode on its own.
 
-This optional module uses Bubble Card's documented custom-style system but targets a CSS class. Recheck it after major Bubble Card updates. The base theme does not need it.
+The module targets Bubble Card CSS classes, so recheck it after major Bubble Card updates. Skip it on low-power wall panels; the base theme works without it.
 
 ## Customization
 
