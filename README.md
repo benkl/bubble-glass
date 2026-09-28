@@ -111,7 +111,8 @@ supported:
   - media-player
   - select
 code: |
-  .bubble-container {
+  .bubble-container,
+  .horizontal-buttons-stack-card .bubble-background {
     backdrop-filter: var(--glass-backdrop-filter) !important;
     -webkit-backdrop-filter: var(--glass-backdrop-filter) !important;
   }
