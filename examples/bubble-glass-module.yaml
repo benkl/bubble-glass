@@ -6,11 +6,11 @@
 # Modules > Create new module with "All cards" enabled.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.4"
+  version: "1.5"
   creator: "benkl"
   description: >-
     Backdrop blur for Bubble Card rows, frameless separators, pop-up close button glass,
-    and floating glass pills for all footer buttons.
+    and floating glass pills for all footer buttons (overriding JS inline borders).
   is_global: true
   code: |
     /* Bubble Card standard cards: backdrop blur */
@@ -39,6 +39,15 @@ bubble_glass:
       box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
     }
 
+    /* Overwrite Bubble Card's changeLight JS inline style="border-color: var(--primary-text-color)" */
+    .horizontal-buttons-stack-card .bubble-background-color,
+    .bubble-button .bubble-background-color {
+      border-color: transparent !important;
+      border-width: 0px !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
     /* All bottom menu buttons (links, navigation, pop-up/drawer #hash triggers):
        floating glass pills with blur, highlight, and volumetric shadow */
     .horizontal-buttons-stack-card .bubble-button .bubble-background {
@@ -48,9 +57,4 @@ bubble_glass:
       border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
       box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
       opacity: 1 !important;
-    }
-
-    /* Active & light-entity highlight: keep accent fill, hide dark stock border */
-    .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
-      border-color: transparent !important;
     }

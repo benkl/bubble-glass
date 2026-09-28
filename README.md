@@ -37,23 +37,26 @@ A clean, modern glassmorphism theme for Home Assistant with first-class [Bubble 
 
 ## Bottom Menu Styling
 
-For the bottom `horizontal-buttons-stack` to render as floating glass pills with blur, add this `styles:` block to your card:
+For the bottom `horizontal-buttons-stack` to render as floating glass pills with blur (and override Bubble Card's JS inline border attributes), add this `styles:` block to your card:
 
 ```yaml
 type: custom:bubble-card
 card_type: horizontal-buttons-stack
 # ... your buttons (both views and #hash pop-up triggers) ...
 styles: |
-  .horizontal-buttons-stack-card .bubble-button .bubble-background {
+  .bubble-background-color {
+    border-color: transparent !important;
+    border-width: 0px !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .bubble-button .bubble-background {
     background-color: var(--glass-background, rgba(255, 255, 255, 0.45)) !important;
     backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
     -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(20px)) !important;
     border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.7)) !important;
     box-shadow: var(--ha-card-box-shadow, 0 8px 24px rgba(0, 0, 0, 0.15)) !important;
     opacity: 1 !important;
-  }
-  .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
-    border-color: transparent !important;
   }
 ```
 
