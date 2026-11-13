@@ -3,6 +3,33 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+## v2.0.0 - 2026-11-13
+
+A visual overhaul and a pass against the current Home Assistant frontend, Bubble Card 3.4.3, and card-mod 4.2.1.
+
+### Changed
+
+- New glass recipe: neutral smoky tint in dark mode and frosted white in light mode. Surfaces get a sheen, a rim light, a lit top edge, a soft bottom shade, and layered depth shadows. Bubble rows use a lighter shadow than cards, so stacked rows no longer smear together.
+- Rim light: a gradient ring over each card and Bubble row edge. It is bright at the top-left and fades around the edge, with a faint glint at the bottom-right. Drawn by card-mod and the module, with the plain border as fallback.
+- New aurora background with five light sources and a fine grain layer that prevents gradient banding. Uses the `fixed` keyword, so Home Assistant pins it to the viewport while cards scroll.
+- Refined azure accent (`#6cc4ff` dark, `#1b6fdc` light) replaces neon `#00f0ff`/`#0055ff`. A full `ha-color-primary-*` scale now themes current Home Assistant buttons, switches, links, and focus rings, which ignored `primary-color` before.
+- Mode-specific state colors for lights, climate modes, locks, alarms, fans, and switches. Light mode uses darker variants that stay readable on white glass.
+- Icon and sub-button chips are a distinct inset tint instead of the same color as the row.
+- Module v2.0: row sheen and rim light, chip hairlines, and a floating shadow and rim on footer buttons. Sub-button cards with `hide_main_background` stay clear.
+- Focus rings follow the accent color.
+- `examples/bubble-card-dashboard.yaml` relies on the module for the footer and uses lighter pop-up settings.
+- Token names: `glass-background*`, `glass-chip-background`, and `glass-shadow` became `glass-surface*`, `glass-chip`, and `glass-shadow*`. See the README token table.
+
+### Fixed
+
+- Fonts applied nowhere. The theme set `primary-font-family` and `paper-font-*`, which current Home Assistant no longer reads. It now sets `ha-font-family-body` and `ha-font-family-heading`.
+- Primary buttons were unreadable: white text on neon cyan in dark mode, and navy text on blue in light mode. `text-primary-color` now contrasts with the accent.
+- Menus, pickers, slider surfaces, and map overlays were nearly transparent in light mode, because `card-background-color` was set to the 14% glass tint. It is now a solid surface. Glass stays on cards only.
+- Standard cards had no blur. Home Assistant cards are now frosted through card-mod. Bubble Card is excluded so its fixed footer and menus stay in place. HA's own transparent cards (heading, toggle group, transparent clock and date) are skipped.
+- `card-mod-root` was ignored, because card-mod uses only `card-mod-root-yaml` when both exist. The header edge now comes from Home Assistant's native `app-header-border-bottom`.
+- Every card was set to `overflow: hidden`, which clipped chart tooltips and focus rings. Removed together with the decorative 1px edge lines and their mobile artifacts.
+- Removed variables that nothing reads any more: the paper-*, switch-*, and pop-up background color keys, among others. Bubble Card always overrides the pop-up color inline from `bg_color`/`bg_opacity`.
+
 ## v1.15.0 - 2026-09-28
 
 ### Changed

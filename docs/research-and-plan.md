@@ -174,4 +174,21 @@ Publication record (2026-09-28):
 - The Validate workflow passed on the initial push: HACS validation and yamllint both green.
 - Release `v1.0.0` published; HACS reports it as the installed version for custom-repository users.
 
-Not planned for now: submission to the HACS default catalog (`hacs/default`). The theme installs as a custom repository, which is the documented path for repositories not in the catalog. Real dashboard screenshots are still outstanding; `docs/preview.svg` is the placeholder.
+Not planned for now: submission to the HACS default catalog (`hacs/default`). The theme installs as a custom repository, which is the documented path for repositories not in the catalog. Real dashboard screenshots are still outstanding. `docs/preview.jpg` is rendered from the theme tokens in a mock layout.
+
+## v2.0.0 audit (2026-11-13)
+
+Checked against the source of the Home Assistant frontend (`dev`), Bubble Card v3.4.3, and card-mod v4.2.1.
+
+- **Fonts.** `typography.globals.ts` defines `--ha-font-family-body` and `--ha-font-family-heading`. Nothing reads `--primary-font-family` or `--paper-font-*` any more.
+- **Accent scale.** `--primary-color` defaults to `--ha-color-primary-40`. Buttons, switches, and focus rings read the semantic `--ha-color-fill-primary-*`, `--ha-color-border-primary-*`, and `--ha-color-on-primary-*` tokens, which resolve to the `--ha-color-primary-NN` scale. Home Assistant regenerates that scale only from the user's profile color, never from a theme's `primary-color`, so the theme defines all eleven steps.
+- **Opaque surfaces.** `--card-background-color` paints `ha-dropdown` (`--wa-color-surface-raised`), picker bottom sheets, `ha-slider`, map overlays, and the calendar card. It must stay opaque. Cards read `--ha-card-background` first.
+- **Native blur.** `ha-card` and `ha-badge` support `--ha-card-backdrop-filter`. The theme does not set it: Bubble Card renders inside `ha-card`, and a filtered `ha-card` becomes the containing block for Bubble's fixed horizontal-buttons-stack footer. card-mod applies the blur and excludes `bubble-card`. Bubble pop-ups mount on the shadow root, so they are not affected.
+- **Transparent HA cards.** Heading and toggle-group cards set `backdrop-filter: none` on their `ha-card`, and clock and date cards do the same through `.no-background`. The card-mod rule skips them.
+- **card-mod themes.** `get_theme()` returns `card-mod-<type>-yaml` when present and only otherwise falls back to `card-mod-<type>`. Theme styles for type `card` are injected into the card element's shadow root, so `:host(<tag>) ha-card` selectors work.
+- **Native header and dialog variables.** These need no card-mod: `--app-header-backdrop-filter`, `--app-header-border-bottom`, `--ha-dialog-surface-background`, `--ha-dialog-surface-backdrop-filter`, and `--dialog-box-shadow`.
+- **Background.** `hui-view-background` sets `position: fixed` when the theme background contains the token `fixed`, and forces `background-attachment: scroll` as a Safari workaround.
+- **Pop-up color.** Bubble Card writes `--bubble-pop-up-background-color` inline from `bg_color`, or from `--ha-card-background`, with `bg_opacity` applied. A theme value for it is always overridden. `--bubble-pop-up-main-background-color` is read only by the editor preview.
+- **Separators.** The `--bubble-separator-*` variables are live. Bubble Card's base styles substitute `card-type` with the card's type at build time.
+- **Rim light.** A masked `::after` ring (`mask-composite: exclude`) draws the edge gradient. On `ha-card` it sits exactly over the 1px border, which stays as the fallback. Bubble rows clip to their padding box (`overflow: clip`), so there the ring sits just inside the edge and the row border turns transparent. Bubble Card uses no `::after` on `.bubble-container` or the footer `.bubble-button`. The sub-buttons card's `hide_main_background` adds `.no-background`, which the module excludes.
+- **Module storage.** Bubble Card Tools stores each module as `/config/bubble_card/modules/<id>.yaml` in the same `{ <id>: { name, code, ... } }` shape as `examples/bubble-glass-module.yaml`. The Module Editor's **Import Module** accepts that YAML pasted directly.

@@ -1,56 +1,93 @@
 ---
-# Bubble Glass global module.
+# Bubble Glass global module (optional, recommended).
 #
-# Install: copy this file to <config>/bubble-modules.yaml (merge if already present)
-# and restart Home Assistant, or create it in any Bubble Card under
-# Modules > Create new module with "All cards" enabled.
+# Install (see README, "Install the Bubble Card module"):
+# - Bubble Card Tools: in any Bubble Card editor open Modules > My Modules >
+#   Import Module and paste this whole file, or copy it to
+#   /config/bubble_card/modules/bubble_glass.yaml and reload the page.
+# - Legacy setup without Bubble Card Tools: merge it into
+#   /config/bubble-modules.yaml and restart Home Assistant.
 bubble_glass:
   name: "Bubble Glass"
-  version: "1.7"
+  version: "2.0"
   creator: "benkl"
   description: >-
-    Glass styling for Bubble Card rows, pop-up actions, and footer buttons without breaking dropdown placement.
+    Frosted blur, sheen, and rim light for Bubble Card rows, chips, pop-up actions,
+    and footer buttons, without breaking fixed footers or dropdown placement.
   is_global: true
   code: |
-    /* Bubble Card rows use the background leaf, never .bubble-container.
-       A filtered container becomes a containing block and breaks fixed menus. */
-    .bubble-container:not(.bubble-separator) > .bubble-wrapper > .bubble-background {
-      backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
-      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(12px)) !important;
+    /* Row surface: sheen over the tint. Separators and sub-button cards with
+       hide_main_background stay clear. */
+    .bubble-container:not(.bubble-separator):not(.no-background) {
+      background-image: var(--glass-sheen, none);
+      border-color: transparent;
     }
 
-    /* Separators stay frameless */
+    /* Rim light: a gradient ring just inside the row edge, bright at the
+       top-left. It replaces the flat border, which stays as transparent space. */
+    .bubble-container:not(.bubble-separator):not(.no-background)::after,
+    .horizontal-buttons-stack-card .bubble-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: var(--glass-rim, none);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .horizontal-buttons-stack-card .bubble-button::after {
+      z-index: 3;
+    }
+    /* Blur the background leaf, never .bubble-container. A filtered container
+       becomes a containing block and breaks fixed menus. */
+    .bubble-container:not(.bubble-separator) > .bubble-wrapper > .bubble-background {
+      -webkit-backdrop-filter: var(--glass-backdrop-filter, blur(16px));
+      backdrop-filter: var(--glass-backdrop-filter, blur(16px));
+    }
+
+    /* Icon and sub-button chips get a hairline edge so they read as inset
+       glass instead of a flat tint. */
+    .bubble-icon-container,
+    .bubble-sub-button {
+      box-shadow: inset 0 0 0 1px var(--glass-border-color, rgba(255, 255, 255, 0.10));
+    }
+
+    /* Separators stay frameless. */
     .bubble-separator.separator-container,
     .bubble-container.bubble-separator {
       background: none !important;
       border: none !important;
       box-shadow: none !important;
-      backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
     }
 
-    /* Pop-up close / back action buttons. The pop-up shell already owns the
-       backdrop blur, so these use the same tint, edge, and shadow only. */
+    /* Pop-up close and back buttons. The pop-up shell already owns the
+       backdrop blur, so these carry tint, edge, and highlight only. */
     .bubble-header-action-button,
     .bubble-close-button {
-      background: var(--glass-chip-background, rgba(255, 255, 255, 0.14)) !important;
-      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.30)) !important;
-      box-shadow: var(--ha-card-box-shadow, 0 8px 32px rgba(0, 0, 0, 0.10)) !important;
+      background: var(--glass-chip, rgba(255, 255, 255, 0.08)) !important;
+      border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.10)) !important;
+      box-shadow: var(--glass-shadow-row, none) !important;
     }
 
-    /* Footer buttons match the native Bubble Card surface. */
+    /* Footer buttons use the same surface as a standard Bubble Card row. */
     .horizontal-buttons-stack-card .bubble-button {
       border-radius: var(--bubble-border-radius, 32px) !important;
       overflow: hidden !important;
+      box-shadow: var(--bubble-footer-box-shadow, var(--glass-shadow-float, none));
     }
     .horizontal-buttons-stack-card .bubble-button .bubble-background {
-      background-color: var(--bubble-main-background-color, var(--glass-background)) !important;
+      background-color: var(--bubble-main-background-color, var(--glass-surface)) !important;
+      background-image: var(--glass-sheen, none);
       border: none !important;
-      box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
       opacity: 1 !important;
     }
-    /* Bubble Card sets an inactive inline border here. Keep the layer only
-       for state color, never for a second border or shadow. */
+    /* Bubble Card writes an inline inactive border on this layer. Keep it only
+       for the state color, never for a second border or shadow. */
     .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
       border: none !important;
       box-shadow: none !important;

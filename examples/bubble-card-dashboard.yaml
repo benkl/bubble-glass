@@ -66,9 +66,9 @@ views:
             name: Kitchen
             icon: mdi:silverware-fork-knife
             popup_mode: adaptive-dialog
-            bg_opacity: "82"
-            bg_blur: "28"
-            shadow_opacity: "25"
+            bg_opacity: "74"
+            bg_blur: "24"
+            shadow_opacity: "30"
             cards:
               - type: custom:bubble-card
                 card_type: button
@@ -88,18 +88,4 @@ views:
             auto_order: false
             1_name: Home
             1_icon: mdi:home-variant
-            styles: |
-              .horizontal-buttons-stack-card .bubble-button {
-                border-radius: var(--bubble-border-radius, 32px) !important;
-                overflow: hidden !important;
-              }
-              .horizontal-buttons-stack-card .bubble-button .bubble-background {
-                background-color: var(--bubble-main-background-color, var(--glass-background)) !important;
-                border: none !important;
-                box-shadow: var(--bubble-box-shadow, var(--glass-shadow)) !important;
-                opacity: 1 !important;
-              }
-              .horizontal-buttons-stack-card .bubble-button .bubble-background-color {
-                border: none !important;
-                box-shadow: none !important;
-              }
+            # Footer glass comes from examples/bubble-glass-module.yaml.
