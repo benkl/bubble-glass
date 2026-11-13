@@ -1,5 +1,5 @@
 ---
-# Bubble Glass v2.0.0
+# Bubble Glass v2.1.0
 # Frosted-glass theme for Home Assistant and Bubble Card.
 #
 # Token layers:
@@ -114,6 +114,9 @@ Bubble Glass:
 
       # Glass tokens
       glass-surface: "rgba(20, 25, 44, 0.46)"
+      glass-surface-float: "rgba(26, 32, 58, 0.90)"
+      glass-on-accent: "#ffffff"
+      glass-on-text-shadow: "0 1px 2px rgba(0, 0, 0, 0.40)"
       glass-surface-solid: "#141a33"
       glass-surface-raised: "rgba(24, 31, 60, 0.82)"
       glass-chip: "rgba(255, 255, 255, 0.07)"
@@ -144,11 +147,16 @@ Bubble Glass:
       ha-card-border-color: "var(--glass-border-color)"
       ha-card-box-shadow: "var(--glass-shadow)"
 
-      # Header, sidebar, dialogs
-      app-header-background-color: "rgba(7, 11, 23, 0.55)"
+      # Header, sidebar, dialogs. The dashboard header has no bar: it floats
+      # on the background and only gets a faint veil while content scrolls
+      # under it (card-mod). app-theme-color tints the phone status bar.
+      app-header-background-color: "transparent"
       app-header-text-color: "var(--primary-text-color)"
-      app-header-border-bottom: "1px solid var(--divider-color)"
-      app-header-backdrop-filter: "blur(24px) saturate(180%)"
+      app-header-border-bottom: "none"
+      app-theme-color: "#080d1d"
+      bar-box-shadow: "none"
+      glass-header-scrolled: "rgba(7, 11, 23, 0.40)"
+      app-header-backdrop-filter: "blur(20px)"
       app-header-edit-background-color: "#1a2448"
       app-header-edit-text-color: "#eef2ff"
       sidebar-background-color: "rgba(9, 13, 28, 0.82)"
@@ -185,15 +193,16 @@ Bubble Glass:
       bubble-icon-background-color: "var(--glass-chip)"
       bubble-sub-button-background-color: "var(--glass-chip)"
       bubble-accent-color: "var(--primary-color)"
+      bubble-button-accent-color: "#1b77d4"
       bubble-border: "1px solid var(--glass-border-color)"
       bubble-box-shadow: "var(--glass-shadow-row)"
       bubble-sub-slider-background-color: "rgba(255, 255, 255, 0.10)"
       bubble-media-player-slider-background-color: "rgba(255, 255, 255, 0.10)"
       bubble-sub-button-dark-text-color: "#05101f"
-      bubble-light-white-color: "#fff1c9"
+      bubble-light-white-color: "#f2c98a"
       bubble-select-list-background-color: "var(--glass-surface-solid)"
       bubble-select-list-item-accent-color: "var(--glass-chip-active)"
-      bubble-horizontal-buttons-stack-background-color: "var(--glass-surface)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(7, 11, 23, 0.92)"
       bubble-footer-box-shadow: "var(--glass-shadow-float)"
       bubble-separator-main-background-color: "transparent"
       bubble-separator-border: "none"
@@ -257,6 +266,9 @@ Bubble Glass:
 
       # Glass tokens
       glass-surface: "rgba(255, 255, 255, 0.46)"
+      glass-surface-float: "rgba(255, 255, 255, 0.88)"
+      glass-on-accent: "#ffffff"
+      glass-on-text-shadow: "none"
       glass-surface-solid: "#fbfcff"
       glass-surface-raised: "rgba(251, 252, 255, 0.84)"
       glass-chip: "rgba(20, 45, 95, 0.06)"
@@ -286,10 +298,13 @@ Bubble Glass:
       ha-card-box-shadow: "var(--glass-shadow)"
 
       # Header, sidebar, dialogs
-      app-header-background-color: "rgba(245, 248, 254, 0.62)"
+      app-header-background-color: "transparent"
       app-header-text-color: "var(--primary-text-color)"
-      app-header-border-bottom: "1px solid var(--divider-color)"
-      app-header-backdrop-filter: "blur(24px) saturate(180%)"
+      app-header-border-bottom: "none"
+      app-theme-color: "#f5f8fe"
+      bar-box-shadow: "none"
+      glass-header-scrolled: "rgba(245, 248, 254, 0.55)"
+      app-header-backdrop-filter: "blur(20px)"
       app-header-edit-background-color: "#dce5f6"
       app-header-edit-text-color: "#111a2e"
       sidebar-background-color: "rgba(248, 250, 255, 0.84)"
@@ -326,6 +341,7 @@ Bubble Glass:
       bubble-icon-background-color: "var(--glass-chip)"
       bubble-sub-button-background-color: "var(--glass-chip)"
       bubble-accent-color: "var(--primary-color)"
+      bubble-button-accent-color: "#1b6fdc"
       bubble-border: "1px solid var(--glass-border-color)"
       bubble-box-shadow: "var(--glass-shadow-row)"
       bubble-sub-slider-background-color: "rgba(20, 45, 95, 0.08)"
@@ -334,7 +350,7 @@ Bubble Glass:
       bubble-light-white-color: "#fff0bf"
       bubble-select-list-background-color: "var(--glass-surface-solid)"
       bubble-select-list-item-accent-color: "var(--glass-chip-active)"
-      bubble-horizontal-buttons-stack-background-color: "var(--glass-surface)"
+      bubble-horizontal-buttons-stack-background-color: "rgba(238, 242, 251, 0.92)"
       bubble-footer-box-shadow: "var(--glass-shadow-float)"
       bubble-separator-main-background-color: "transparent"
       bubble-separator-border: "none"
@@ -377,24 +393,29 @@ Bubble Glass:
       backdrop-filter: var(--glass-backdrop-filter, none);
     }
 
-  # Lighter blur on phones, and solid surfaces for anyone who has asked their
+  # Header veil while scrolled (not in edit mode, which keeps its own color),
+  # lighter blur on phones, and solid surfaces for anyone who has asked their
   # OS to reduce transparency. Set on hui-root so every card inherits it.
   card-mod-root-yaml: |
     .: |
+      :host([scrolled]) div:not(.edit-mode) > .header {
+        background-color: var(--glass-header-scrolled, transparent);
+      }
       @media (max-width: 768px) {
         :host {
           --glass-backdrop-filter: blur(12px) saturate(160%);
-          --app-header-backdrop-filter: blur(14px) saturate(160%);
+          --app-header-backdrop-filter: blur(12px);
         }
       }
       @media (prefers-reduced-transparency: reduce) {
         :host {
           --glass-backdrop-filter: none;
           --app-header-backdrop-filter: none;
+          --glass-header-scrolled: var(--glass-surface-solid);
           --glass-sheen: none;
           --glass-rim: none;
           --ha-card-background: var(--glass-surface-solid);
           --bubble-main-background-color: var(--glass-surface-solid);
-          --bubble-horizontal-buttons-stack-background-color: var(--glass-surface-solid);
+          --glass-surface-float: var(--glass-surface-solid);
         }
       }

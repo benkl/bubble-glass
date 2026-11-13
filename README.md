@@ -33,6 +33,7 @@ A frosted-glass theme for Home Assistant with first-class [Bubble Card](https://
 ## What you get
 
 - **Frosted glass surfaces.** Each surface has a translucent tint, backdrop blur, a soft sheen, and a rim light. The rim light is a thin gradient edge, bright at the top-left like light catching real glass. Layered shadows add depth.
+- **No header bar.** The dashboard title and tabs float on the background. A faint veil appears only while content scrolls underneath.
 - **Aurora background.** Soft color glows sit behind the glass, and a fine grain stops gradient banding. The background stays put while cards scroll. It needs no network images, so it works offline.
 - **One accent color everywhere.** A refined azure scale drives current Home Assistant buttons, switches, links, sliders, and focus rings. Button text stays readable in both modes.
 - **Light and dark mode in one theme.** It follows your device, or you can pin a mode.
@@ -233,12 +234,15 @@ Every surface is built from a few `glass-*` tokens, defined once per mode:
 | `glass-surface` | Cards, Bubble rows, footer buttons |
 | `glass-surface-solid` | Menus, pickers, dropdown lists; also the reduced-transparency fallback |
 | `glass-surface-raised` | Dialogs and bottom sheets |
+| `glass-surface-float` | Footer buttons that float over content |
 | `glass-chip` / `glass-chip-active` | Icon and sub-button chips; selected list item |
+| `glass-on-accent` / `glass-on-text-shadow` | Text and icon color on accent-filled buttons; text shadow on active rows |
 | `glass-border-color` | One-pixel base edge |
 | `glass-rim` | Rim-light gradient drawn over the edge |
 | `glass-sheen` | Light falloff across a surface |
 | `glass-shadow` / `glass-shadow-row` / `glass-shadow-float` | Depth of cards, Bubble rows, and the floating footer |
 | `glass-backdrop-filter` | Blur recipe (top level, shared by both modes) |
+| `glass-header-scrolled` | Veil behind the dashboard header while scrolled (card-mod) |
 
 ### Recipes
 
@@ -258,6 +262,16 @@ lovelace-background: "center / cover no-repeat url('/local/backgrounds/home.jpg'
 ```
 
 Keep the word `fixed`: it tells Home Assistant to pin the background while the cards scroll. To set a background for a single view, use the view's **Background** setting instead.
+
+**Bring back a header bar.** Give the header a tint in each mode, for example:
+
+```yaml
+app-header-background-color: "rgba(7, 11, 23, 0.55)"      # dark
+app-header-background-color: "rgba(245, 248, 254, 0.62)"  # light
+app-header-border-bottom: "1px solid var(--divider-color)"
+```
+
+To remove even the scroll veil, set `glass-header-scrolled: "transparent"`.
 
 **No grain.** Delete the first layer of `lovelace-background`: the `url("data:image/svg+xml,…")` entry and the comma after it.
 
@@ -294,6 +308,12 @@ Remove any old per-card `styles:` block from earlier Bubble Glass READMEs on you
 
 **A transparent sub-button card or custom card got a frame or sheen.**
 Exclude it from the module on that card with `modules: ["!bubble_glass"]`.
+
+**Active buttons are hard to read.**
+Accent-filled buttons use `bubble-button-accent-color` with white text. The white text and icon come from the module, so make sure module v2.1 or newer is installed. To change the fill, pick a color with at least 4.5:1 contrast against white. Light rows use the light's own color; Bubble Card darkens it for white text, and the module adds a text shadow in dark mode.
+
+**Content shows through the footer.**
+Install module v2.1 or newer, and leave the footer's **Hide gradient** option off.
 
 **Text is hard to read over my own background image.**
 Raise the alpha of `glass-surface` (see [Recipes](#recipes)), or use a darker or blurrier image.

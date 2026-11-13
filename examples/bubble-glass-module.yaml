@@ -9,7 +9,7 @@
 #   /config/bubble-modules.yaml and restart Home Assistant.
 bubble_glass:
   name: "Bubble Glass"
-  version: "2.0"
+  version: "2.1"
   creator: "benkl"
   description: >-
     Frosted blur, sheen, and rim light for Bubble Card rows, chips, pop-up actions,
@@ -48,6 +48,28 @@ bubble_glass:
       backdrop-filter: var(--glass-backdrop-filter, blur(16px));
     }
 
+    /* Active switch buttons are filled with the deep accent
+       (bubble-button-accent-color). Bubble Card writes that fill as an inline
+       variable on the card, and colors the icon with the same accent, so the
+       icon would vanish. Match the inline fill and put white text and a white
+       icon on a lighter chip. */
+    [style*="var(--bubble-button-accent-color"] .bubble-name,
+    [style*="var(--bubble-button-accent-color"] .bubble-state,
+    [style*="var(--bubble-button-accent-color"] .bubble-icon-container,
+    [style*="var(--bubble-button-accent-color"] .bubble-main-icon {
+      color: var(--glass-on-accent, #ffffff) !important;
+    }
+    [style*="var(--bubble-button-accent-color"] .bubble-icon-container {
+      background-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    /* Active rows sit on a colored surface (light color or accent). A soft
+       shadow keeps white text crisp on it in dark mode; none in light mode. */
+    .is-on .bubble-name,
+    .is-on .bubble-state {
+      text-shadow: var(--glass-on-text-shadow, none);
+    }
+
     /* Icon and sub-button chips get a hairline edge so they read as inset
        glass instead of a flat tint. */
     .bubble-icon-container,
@@ -74,14 +96,15 @@ bubble_glass:
       box-shadow: var(--glass-shadow-row, none) !important;
     }
 
-    /* Footer buttons use the same surface as a standard Bubble Card row. */
+    /* Footer buttons float over content: a near-solid glass surface keeps
+       their labels readable over whatever card scrolls underneath. */
     .horizontal-buttons-stack-card .bubble-button {
       border-radius: var(--bubble-border-radius, 32px) !important;
       overflow: hidden !important;
       box-shadow: var(--bubble-footer-box-shadow, var(--glass-shadow-float, none));
     }
     .horizontal-buttons-stack-card .bubble-button .bubble-background {
-      background-color: var(--bubble-main-background-color, var(--glass-surface)) !important;
+      background-color: var(--glass-surface-float, var(--bubble-main-background-color)) !important;
       background-image: var(--glass-sheen, none);
       border: none !important;
       opacity: 1 !important;

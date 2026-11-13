@@ -3,6 +3,20 @@
 All notable changes to this project are documented here. Versions follow
 [semver](https://semver.org/). HACS shows the latest GitHub release tag.
 
+## v2.1.0 - 2026-11-13
+
+### Changed
+
+- The dashboard header has no bar any more. Background, bottom border, and shadow are gone, so the title and tabs float on the aurora. While content scrolls underneath, a faint veil (`glass-header-scrolled`, card-mod) and a plain blur keep the title readable. Edit mode keeps its own header color.
+- The header blur no longer boosts saturation, which showed as a brighter strip at the top of the page.
+- `app-theme-color` is set explicitly, so the phone status bar and browser chrome match the top of the background instead of turning transparent.
+
+### Fixed
+
+- Active switch buttons were unreadable: white text on a light-cyan fill, with the icon in the same cyan and therefore invisible. Filled buttons and non-light slider fills now use a deeper azure (`bubble-button-accent-color`, 4.5:1 or better with white). Module v2.1 puts white text and a white icon on a lighter chip.
+- Warm-white lights in dark mode painted a pale khaki surface under white text. `bubble-light-white-color` is now a deeper warm tone. Module v2.1 adds a soft text shadow on active rows in dark mode.
+- Cards scrolling under the footer showed through the footer buttons. The buttons now use a near-solid `glass-surface-float`, and Bubble Card's footer fade uses an opaque page color, so content fades out behind the footer.
+
 ## v2.0.0 - 2026-11-13
 
 A visual overhaul and a pass against the current Home Assistant frontend, Bubble Card 3.4.3, and card-mod 4.2.1.
